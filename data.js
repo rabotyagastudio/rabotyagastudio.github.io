@@ -1,0 +1,182 @@
+// Всё, что меняется на сайте, — в этом файле.
+
+window.SITE = {
+  name: "Работяга",
+  role: "дизайнер",
+  telegram: "work_prmt", // без @
+  accent: "#FF4D1A",
+  status: "Принимаю заказы",
+  headline: "Дизайн, после которого бизнес выглядит дороже",
+  lead: "Логотипы и айдентика, соцсети, презентации, моушен и сайты. Беру и точечные задачи, и упаковку бренда целиком.",
+  // price можно оставить пустым — тогда цена не показывается
+  services: [
+    { id: "identity", short: "Айдентика", title: "Логотипы и айдентика", text: "Логотип, цвета, шрифты и правила, по которым бренд узнают с первого взгляда.", price: "" },
+    { id: "social", short: "Соцсети", title: "Соцсети и креативы", text: "Аватар, обложки, шаблоны постов и сторис, рекламные баннеры.", price: "" },
+    { id: "carousels", short: "Карусели", title: "Карусели для экспертов", text: "Экспертные карусели для Instagram и Telegram: обложка, которая цепляет, и слайды, которые листают до конца.", price: "" },
+    { id: "slides", short: "Презентации", title: "Презентации", text: "Презентации для инвесторов, коммерческие предложения и гайды, которые дочитывают до конца.", price: "" },
+    { id: "print", short: "Полиграфия", title: "Визитки и полиграфия", text: "Визитки, меню, листовки, наклейки — с подготовкой к печати.", price: "" },
+    { id: "motion", short: "Моушен", title: "Моушен", text: "Анимация логотипа, короткие ролики для рилс и сторис.", price: "" },
+    { id: "web", short: "Сайты", title: "Сайты и интерфейсы", text: "Лендинги и интерфейсы. Проект побольше обсуждаем отдельно.", price: "" },
+  ],
+};
+
+// Работы. Картинки кладём в works/<slug>/.
+// Ссылка на конкретный кейс для поста в Threads: адрес-сайта/#slug
+//
+// slug      — латиницей, уникальный
+// service   — id из списка услуг выше
+// concept   — true, если это концепт, а не реальный заказ
+// cover     — обложка карточки (лучше 4:3)
+// before/after — если есть, в кейсе появится слайдер «было/стало»
+// images — картинки или видео: { video, poster, vertical }; url — ссылка на живой сайт
+window.WORKS = [
+  {
+    slug: "penka-identity",
+    title: "Айдентика кофейни «Пенка»",
+    service: "identity",
+    concept: true,
+    year: 2026,
+    cover: "works/penka-identity/cover.jpg",
+    task: "Небольшая кофейня у дома. Нужен бренд, который видно с улицы и в ленте: тёплый, но не в коричнево-бежевых тонах, как у всех. И чтобы он одинаково хорошо смотрелся на стакане, вывеске, в меню и в соцсетях.",
+    solution: "Героем стала шапка молочной пены, из неё вырос знак: чашка капучино из трёх «облаков» пены, чаши и блюдца. Основной цвет — кобальт, он заметен издалека, а сливочный и абрикосовый добавляют тепла. Сделал логосистему, палитру с пропорциями, шрифтовую пару, паттерн и стикеры, стаканы трёх размеров, вывеску и оформление соцсетей.",
+    images: [
+      "works/penka-identity/01-idea.jpg",
+      "works/penka-identity/02-mark.jpg",
+      "works/penka-identity/03-logo.jpg",
+      "works/penka-identity/04-colors.jpg",
+      "works/penka-identity/05-type.jpg",
+      "works/penka-identity/06-graphics.jpg",
+      "works/penka-identity/07-cups.jpg",
+      "works/penka-identity/08-social.jpg",
+      "works/penka-identity/09-sign.jpg",
+      "works/penka-identity/10-final.jpg",
+    ],
+  },
+  {
+    slug: "penka-print",
+    title: "Меню и карта гостя для «Пенки»",
+    service: "print",
+    concept: true,
+    year: 2026,
+    cover: "works/penka-print/cover.jpg",
+    task: "Полиграфия для той же кофейни: меню, которое читается за пять секунд у кассы, и карта лояльности, которую не хочется выбросить.",
+    solution: "Меню на двух листах А4: кофе на кобальте, остальное на светлом, цены выровнены в одну колонку, объёмы набраны мелко, чтобы не спорить с названиями. Та же сетка масштабируется до меню-доски над стойкой. На обороте карты гостя семь штампов-знаков, седьмой, бесплатный кофе выделен абрикосовым. Плюс мелочи: Wi-Fi-карточка, ценники для витрины, сахар в стиках и наклейки.",
+    images: [
+      "works/penka-print/01-menu.jpg",
+      "works/penka-print/02-board.jpg",
+      "works/penka-print/03-card.jpg",
+      "works/penka-print/04-details.jpg?v=2",
+    ],
+  },
+  {
+    slug: "vnutri-social",
+    title: "Соцсети психолога «Внутри»",
+    service: "social",
+    concept: true,
+    year: 2026,
+    cover: "works/vnutri-social/cover.jpg?v=2",
+    task: "Психолог работает с тревогой и выгоранием. Её клиенты устали от громких обещаний в ленте, поэтому профиль должен с первого экрана давать спокойствие и опору, а посты — дочитываться и приводить на запись.",
+    solution: "Собрал тихий тёплый визуальный язык. Знак — открытая арка, безопасное место, и арка повторяется в кадрировании фото. Поставил фотостиль: дневной свет, лён, букле. Антиква с курсивом, сетка из 12 постов в формате 3:4, шаблоны каруселей и сторис, обложки актуального и рекламные креативы под два оффера.",
+    images: [
+      "works/vnutri-social/01-brief.jpg",
+      "works/vnutri-social/02-identity.jpg",
+      "works/vnutri-social/03-photo.jpg",
+      "works/vnutri-social/04-grid.jpg",
+      "works/vnutri-social/05-posts.jpg",
+      "works/vnutri-social/06-carousel.jpg",
+      "works/vnutri-social/07-stories.jpg",
+      "works/vnutri-social/08-highlights.jpg",
+      "works/vnutri-social/09-ads.jpg",
+      "works/vnutri-social/10-final.jpg",
+    ],
+  },
+  {
+    slug: "carousels",
+    title: "Карусели для экспертов",
+    service: "carousels",
+    concept: true,
+    year: 2026,
+    cover: "works/carousels/cover.jpg",
+    task: "Эксперту нужен пост, который листают до конца и после которого пишут в директ. Три разных эксперта — нутрициолог, финансист и юрист, — и у каждого свой голос.",
+    solution: "Собрал три карусели по семь слайдов, у каждой свой стиль. «Сытно» — яркая, с иллюстрациями тарелок. «Кубышка» — бесшовная: график накоплений тянется через все слайды. «Буква» — строгая, «как пишут → как надо» с готовыми формулировками. Везде обложка с цифрой и пользой, одна мысль на слайд и финал, который ведёт в директ.",
+    images: [
+      "works/carousels/01-sytno.jpg",
+      "works/carousels/02-kubyshka.jpg",
+      "works/carousels/03-bukva.jpg",
+      "works/carousels/04-feed.jpg",
+    ],
+  },
+  {
+    slug: "gryadka-deck",
+    title: "Презентация для инвесторов «Грядка»",
+    service: "slides",
+    concept: true,
+    year: 2026,
+    cover: "works/gryadka-deck/cover.jpg?v=4",
+    task: "Стартап вертикальных ферм ищет инвестиции. Нужна презентация, которую инвестор поймёт за три минуты: проблема, продукт, рынок, цифры, сколько просят и на что.",
+    solution: "Девять слайдов, на каждом одна мысль и одна главная цифра. Тёмно-зелёный и салатовый — цвета фермы под LED-светом. Графики роста, размер рынка, экономика и то, на что пойдут деньги, нарисованы в одной системе, чтобы презентация читалась как продукт, а не как отчёт. Данные условные.",
+    images: [
+      "works/gryadka-deck/00-overview.jpg?v=2",
+      "works/gryadka-deck/01.jpg?v=2",
+      "works/gryadka-deck/02.jpg",
+      "works/gryadka-deck/03.jpg",
+      "works/gryadka-deck/04.jpg",
+      "works/gryadka-deck/05.jpg",
+      "works/gryadka-deck/06.jpg",
+      "works/gryadka-deck/07.jpg",
+      "works/gryadka-deck/08.jpg",
+      "works/gryadka-deck/09.jpg",
+    ],
+  },
+  {
+    slug: "shum-motion",
+    title: "Моушен-айдентика фестиваля «Шум»",
+    service: "motion",
+    concept: true,
+    year: 2026,
+    cover: "works/shum-motion/cover.jpg",
+    task: "Городскому фестивалю электронной музыки нужен логотип, который живёт в движении: на экранах сцены, в рилс и на афишах, — и сразу считывается как «громко».",
+    solution: "Логотип собран из пикселей LED-табло 5×5: в движении каждая колонка работает как полоса эквалайзера и сама складывается в слово ШУМ. Сделал анимацию логотипа, рилс на 12 секунд с кинетической типографикой и серию из трёх афиш.",
+    images: [
+      "works/shum-motion/01-system.jpg",
+      { video: "works/shum-motion/logo.mp4", poster: "works/shum-motion/logo-poster.jpg" },
+      { video: "works/shum-motion/reel.mp4", poster: "works/shum-motion/reel-poster.jpg", vertical: true },
+      "works/shum-motion/02-board.jpg",
+      "works/shum-motion/03-posters.jpg",
+    ],
+  },
+  {
+    slug: "yulia-sokolova",
+    title: "Сайт для эксперта по метафизике бизнеса",
+    service: "web",
+    year: 2026,
+    cover: "works/yulia-sokolova/cover.jpg?v=3",
+    task: "Личный сайт эксперта по метафизике бизнеса: рассказать о методе, книгах и форматах работы и превратить посетителей в заявки на диагностику — так, чтобы ни одно обращение не потерялось.",
+    solution: "Тёмная премиальная подача с золотыми акцентами под аудиторию первых лиц. Одна страница ведёт от образа эксперта к методу, книгам, форматам работы и форме записи. К сайту подключён Telegram-бот: заявки с формы сразу приходят в бот и автоматически попадают в CRM, где видно каждого клиента и статус его обращения. Сайт, бот и CRM работают как одна система продаж.",
+    images: [
+      "works/yulia-sokolova/01-intro.jpg?v=3",
+      "works/yulia-sokolova/02-page.jpg?v=3",
+      "works/yulia-sokolova/03-screens.jpg?v=3",
+      "works/yulia-sokolova/04-mobile.jpg?v=3",
+      "works/yulia-sokolova/05-system.jpg?v=3",
+      "works/yulia-sokolova/06-details.jpg?v=3",
+    ],
+  },
+  {
+    slug: "director-goda",
+    title: "Сайт всероссийского конкурса для руководителей",
+    service: "web",
+    year: 2026,
+    cover: "works/director-goda/cover.jpg?v=3",
+    task: "Сайт всероссийского конкурса для руководителей: объяснить, как устроен конкурс, показать номинации, экспертов и программу и собрать заявки участников и партнёров.",
+    solution: "Строгая редакционная подача: антиква в заголовках, много воздуха, приглушённый зелёный. Страница ведёт по шагам: о конкурсе и сроки, номинации, методология оценки, эксперты, программа развития, партнёрство. Регистрация и оплата участия встроены прямо в сайт: кнопка «Стать участником» открывает форму с оплатой (GetCourse), и человек не уходит со страницы.",
+    images: [
+      "works/director-goda/01-intro.jpg?v=3",
+      "works/director-goda/02-page.jpg?v=3",
+      "works/director-goda/03-screens.jpg?v=3",
+      "works/director-goda/04-mobile.jpg?v=3",
+      "works/director-goda/05-system.jpg?v=3",
+      "works/director-goda/06-details.jpg?v=3",
+    ],
+  },
+];
