@@ -118,7 +118,7 @@
       ${w.video ? `<video class="case-media" src="${w.video}" autoplay muted loop playsinline controls></video>` : ""}
       ${(w.images || []).map(m => typeof m === "string"
         ? `<img class="case-media" src="${m}" alt="" loading="lazy">`
-        : `<video class="case-media${m.vertical ? " vertical" : ""}" src="${m.video}"${m.poster ? ` poster="${m.poster}"` : ""} autoplay muted loop playsinline></video>`).join("")}
+        : `<video class="case-media${m.vertical ? " vertical" : ""}" src="${m.video}"${m.poster ? ` poster="${m.poster}"` : ""} ${m.sound ? "controls preload=\"metadata\"" : "autoplay muted loop"} playsinline></video>`).join("")}
       <div class="case-end">
         <a class="btn" href="${tgUrl}" target="_blank" rel="noopener">Хочу так же — написать в Telegram</a>
         ${next !== w ? `<a class="link" href="#${next.slug}">Дальше: ${next.title} →</a>` : ""}

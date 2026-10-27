@@ -28,7 +28,8 @@ window.SITE = {
 // concept   — true, если это концепт, а не реальный заказ
 // cover     — обложка карточки (лучше 4:3)
 // before/after — если есть, в кейсе появится слайдер «было/стало»
-// images — картинки или видео: { video, poster, vertical }; url — ссылка на живой сайт
+// images — картинки или видео: { video, poster, vertical, sound }; url — ссылка на живой сайт
+//          sound: true — видео со звуком: не играет само, у него есть кнопки управления
 window.WORKS = [
   {
     slug: "penka-identity",
@@ -177,6 +178,41 @@ window.WORKS = [
       "works/director-goda/04-mobile.jpg?v=3",
       "works/director-goda/05-system.jpg?v=3",
       "works/director-goda/06-details.jpg?v=3",
+    ],
+  },
+  {
+    slug: "director-deck",
+    title: "Презентация конкурса «Директор года»",
+    service: "slides",
+    year: 2026,
+    cover: "works/director-deck/cover.jpg",
+    task: "Всероссийскому конкурсу для руководителей нужна презентация для выступлений перед залом: за пару минут объяснить топ-менеджеру, зачем ему участвовать, и довести до регистрации.",
+    solution: "Презентация в стиле сайта конкурса: глубокий зелёный, золото и строгая типографика. История идёт от вопроса залу «Знают ли о вашем успехе другие?» к цифрам конкурса, турам оценки, программе из 20 тренингов и тому, что видит HR в строке резюме. На каждом слайде одна мысль, а главные цифры и выгоды выделены золотом.",
+    images: [
+      "works/director-deck/00-overview.jpg",
+      "works/director-deck/01.jpg",
+      "works/director-deck/02.jpg",
+      "works/director-deck/03.jpg",
+      "works/director-deck/04.jpg",
+      "works/director-deck/05.jpg",
+      "works/director-deck/06.jpg",
+      "works/director-deck/07.jpg",
+      "works/director-deck/08.jpg",
+      "works/director-deck/09.jpg",
+      "works/director-deck/10.jpg",
+    ],
+  },
+  {
+    slug: "director-video",
+    title: "Видеообращение для конкурса «Директор года»",
+    service: "motion",
+    year: 2026,
+    cover: "works/director-video/cover.jpg",
+    task: "Прислали видеообращение соучредителя конкурса, но запись вышла неудачной: картинка не годится, а переснимать некогда. Ролик для соцсетей нужен сразу.",
+    solution: "Вытащил из записи голос, а из фотографии спикера сделал говорящее видео под этот голос. Смонтировал вертикальный ролик на полторы минуты: плашка с именем и титры по словам с золотыми акцентами в цветах конкурса. На всё ушло 10 минут.",
+    images: [
+      { video: "works/director-video/video.mp4", poster: "works/director-video/poster.jpg", vertical: true, sound: true },
+      "works/director-video/01-process.jpg",
     ],
   },
 ];
