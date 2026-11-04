@@ -55,7 +55,7 @@
         <div class="card-img"><img src="${w.cover}" alt="" loading="lazy"></div>
         <div class="badges">
           ${w.before && w.after ? `<span class="badge badge-accent">Было / стало</span>` : ""}
-          ${w.concept ? `<span class="badge">Концепт</span>` : ""}
+          ${w.concept && w.badge !== false ? `<span class="badge">Концепт</span>` : ""}
         </div>
         <div class="card-meta">
           <h3>${w.title}</h3>
