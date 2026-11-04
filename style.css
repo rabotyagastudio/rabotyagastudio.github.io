@@ -207,6 +207,8 @@ h1, h2, h3 {
 .contact p { max-width: 480px; margin-top: 20px; font-size: 18px; color: #A9A6A0; }
 .contact .btn-xl { margin-top: 40px; background: var(--accent); color: var(--ink); }
 .contact .btn-xl:hover { background: var(--bg); }
+/* Ник в кнопке не переносится — на узких экранах ужимаем, чтобы влез в одну строку */
+@media (max-width: 640px) { .contact .btn-xl { padding: 22px 24px; font-size: min(18px, 4.3vw); } }
 .foot { display: flex; justify-content: space-between; padding: 32px var(--pad); color: var(--muted); font-size: 14px; }
 
 /* Кейс */

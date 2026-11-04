@@ -1,9 +1,9 @@
 // Всё, что меняется на сайте, — в этом файле.
 
 window.SITE = {
-  name: "Работяга",
+  name: "Работяга Studio",
   role: "дизайнер",
-  telegram: "work_prmt", // без @
+  telegram: "rabotyaga_studio", // без @
   accent: "#FF4D1A",
   status: "Принимаю заказы",
   headline: "Дизайн, после которого бизнес выглядит дороже",
