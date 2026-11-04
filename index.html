@@ -78,6 +78,19 @@
     <div class="case-body"></div>
   </dialog>
 
+  <dialog class="viewer" id="viewer" aria-label="Просмотр крупно">
+    <div class="viewer-bar">
+      <button class="btn btn-sm btn-ghost" data-back>← Назад ко всем</button>
+      <p class="viewer-title"></p>
+      <span class="viewer-count" aria-live="polite"></span>
+    </div>
+    <div class="viewer-stage"><img alt=""></div>
+    <div class="viewer-nav">
+      <button data-step="-1" aria-label="Предыдущая"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5 8 12l7 7"/></svg></button>
+      <button data-step="1" aria-label="Следующая"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button>
+    </div>
+  </dialog>
+
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>

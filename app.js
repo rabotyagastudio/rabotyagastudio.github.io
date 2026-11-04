@@ -115,16 +115,26 @@
         ${w.task ? `<div><h3>Задача</h3><p>${w.task}</p></div>` : ""}
         ${w.solution ? `<div><h3>Решение</h3><p>${w.solution}</p></div>` : ""}
       </div>
+      ${w.gallery ? `
+        <div class="gallery">
+          ${w.gallery.map((g, i) => `
+            <button class="gallery-item" data-shot="${i}" aria-label="Открыть крупно: ${g.title}">
+              <img src="${g.src}" alt="${g.alt}" loading="lazy">
+              <span class="gallery-cap">${g.title}</span>
+            </button>`).join("")}
+        </div>` : ""}
       ${w.video ? `<video class="case-media" src="${w.video}" autoplay muted loop playsinline controls></video>` : ""}
       ${(w.images || []).map(m => typeof m === "string"
         ? `<img class="case-media" src="${m}" alt="" loading="lazy">`
         : `<video class="case-media${m.vertical ? " vertical" : ""}" src="${m.video}"${m.poster ? ` poster="${m.poster}"` : ""} ${m.sound ? "controls preload=\"metadata\"" : "autoplay muted loop"} playsinline></video>`).join("")}
+      ${w.note ? `<p class="case-note">${w.note}</p>` : ""}
       <div class="case-end">
         <a class="btn" href="${tgUrl}" target="_blank" rel="noopener">Хочу так же — написать в Telegram</a>
         ${next !== w ? `<a class="link" href="#${next.slug}">Дальше: ${next.title} →</a>` : ""}
       </div>`;
     const cmp = $(".compare", body);
     if (cmp) bindCompare(cmp);
+    $$("[data-shot]", body).forEach(b => { b.onclick = () => openShot(w.gallery, +b.dataset.shot); });
     if (!dlg.open) dlg.showModal();
     dlg.scrollTop = 0;
   }
@@ -151,6 +161,50 @@
     });
   }
 
+  // Просмотр серии крупно: стрелки, клавиши ← →, свайп; Esc и «Назад ко всем» возвращают к кейсу
+  const viewer = $("#viewer");
+  const stage = $(".viewer-stage", viewer);
+  const shotImg = $("img", stage);
+  let shots = [];
+  let shot = 0;
+
+  function showShot(i) {
+    shot = (i + shots.length) % shots.length;
+    const g = shots[shot];
+    shotImg.src = g.src;
+    shotImg.alt = g.alt;
+    $(".viewer-title", viewer).textContent = g.title;
+    $(".viewer-count", viewer).textContent = `${shot + 1} / ${shots.length}`;
+    [shot - 1, shot + 1].forEach(j => { new Image().src = shots[(j + shots.length) % shots.length].src; });
+  }
+
+  function openShot(list, i) {
+    shots = list;
+    showShot(i);
+    if (!viewer.open) viewer.showModal();
+  }
+
+  $("[data-back]", viewer).onclick = () => viewer.close();
+  $$("[data-step]", viewer).forEach(b => { b.onclick = () => showShot(shot + Number(b.dataset.step)); });
+  viewer.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") showShot(shot - 1);
+    else if (e.key === "ArrowRight") showShot(shot + 1);
+    else return;
+    e.preventDefault();
+  });
+  // Фокус возвращаем на ту обложку, до которой долистали
+  viewer.addEventListener("close", () => { $(`[data-shot="${shot}"]`, body)?.focus(); });
+
+  let swipeX = null;
+  stage.addEventListener("pointerdown", e => { swipeX = e.clientX; });
+  stage.addEventListener("pointercancel", () => { swipeX = null; });
+  stage.addEventListener("pointerup", e => {
+    if (swipeX === null) return;
+    const dx = e.clientX - swipeX;
+    swipeX = null;
+    if (Math.abs(dx) > 50) showShot(shot + (dx < 0 ? 1 : -1));
+  });
+
   function route() {
     const w = bySlug(decodeURIComponent(location.hash.slice(1)));
     if (w) openCase(w);
@@ -158,6 +212,7 @@
   }
 
   dlg.addEventListener("close", () => {
+    if (viewer.open) viewer.close();
     $$("video", body).forEach(v => v.pause());
     if (bySlug(decodeURIComponent(location.hash.slice(1)))) {
       history.replaceState(null, "", location.pathname + location.search);
