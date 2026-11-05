@@ -111,22 +111,69 @@
             <span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 3 12l6 6M15 6l6 6-6 6"/></svg></span>
           </div>
         </div>` : ""}
-      <div class="case-text">
-        ${w.task ? `<div><h3>Задача</h3><p>${w.task}</p></div>` : ""}
-        ${w.solution ? `<div><h3>Решение</h3><p>${w.solution}</p></div>` : ""}
-      </div>
-      ${w.gallery ? `
-        <div class="gallery">
-          ${w.gallery.map((g, i) => `
-            <button class="gallery-item" data-shot="${i}" aria-label="Открыть крупно: ${g.title}">
-              <img src="${g.src}" alt="${g.alt}" loading="lazy">
-              <span class="gallery-cap">${g.title}</span>
-            </button>`).join("")}
-        </div>` : ""}
-      ${w.video ? `<video class="case-media" src="${w.video}" autoplay muted loop playsinline controls></video>` : ""}
-      ${(w.images || []).map(m => typeof m === "string"
-        ? `<img class="case-media" src="${m}" alt="" loading="lazy">`
-        : `<video class="case-media${m.vertical ? " vertical" : ""}" src="${m.video}"${m.poster ? ` poster="${m.poster}"` : ""} ${m.sound ? "controls preload=\"metadata\"" : "autoplay muted loop"} playsinline></video>`).join("")}
+      ${w.caseShowcase ? `
+        <section class="carousel-showcase" aria-label="Концепт каруселей для экспертов">
+          <div class="carousel-thesis">
+            <div class="carousel-thesis-copy">
+              <p class="carousel-overline">${w.caseShowcase.eyebrow}</p>
+              <h3>${w.caseShowcase.headline}</h3>
+              <p class="carousel-intro">${w.caseShowcase.intro}</p>
+              <div class="carousel-counts" aria-label="Три серии, двадцать один слайд">
+                <span><b>03</b> серии</span><i></i><span><b>21</b> слайд</span><i></i><span>3 голоса</span>
+              </div>
+            </div>
+            <div class="expert-triptych">
+              ${w.caseShowcase.experts.map((expert, i) => `
+                <article class="expert-card expert-card-${i + 1}">
+                  <div class="expert-card-image"><img src="${expert.src}" alt="${expert.alt}" loading="lazy"></div>
+                  <div class="expert-card-copy">
+                    <p>${expert.role}</p><h4>${expert.name}</h4><span>${expert.note}</span>
+                  </div>
+                </article>`).join("")}
+            </div>
+          </div>
+
+          <section class="carousel-feature" aria-label="Семислайдовая серия Кубышка">
+            <div class="carousel-feature-top">
+              <span>ФИНАНСЫ · НЕРЕГУЛЯРНЫЙ ДОХОД</span><span>${w.caseShowcase.slideCount}</span>
+            </div>
+            <div class="carousel-feature-main">
+              <div class="carousel-feature-copy">
+                <p class="carousel-overline">НОВАЯ АРТ-ДИРЕКЦИЯ</p>
+                <h3>${w.caseShowcase.featuredTitle}</h3>
+                <p>${w.caseShowcase.featuredNote}</p>
+                <button class="carousel-start" data-shot="0">Начать с обложки <span aria-hidden="true">↗</span></button>
+              </div>
+              <button class="carousel-feature-cover" data-shot="0" aria-label="Открыть крупно: ${w.gallery[0].title}">
+                <img src="${w.gallery[0].src}" alt="${w.gallery[0].alt}" loading="lazy">
+              </button>
+            </div>
+            <div class="carousel-reel-head"><h4>${w.caseShowcase.slidesLabel}</h4><span>Нажми на слайд, чтобы листать крупно</span></div>
+            <div class="gallery gallery-carousel" aria-label="Все семь слайдов">
+              ${w.gallery.map((g, i) => `
+                <button class="gallery-item" data-shot="${i}" aria-label="Открыть крупно: ${g.title}">
+                  <img src="${g.src}" alt="${g.alt}" loading="lazy">
+                  <span class="gallery-cap">${g.title}</span>
+                </button>`).join("")}
+            </div>
+          </section>
+        </section>` : `
+        <div class="case-text">
+          ${w.task ? `<div><h3>Задача</h3><p>${w.task}</p></div>` : ""}
+          ${w.solution ? `<div><h3>Решение</h3><p>${w.solution}</p></div>` : ""}
+        </div>
+        ${w.gallery ? `
+          <div class="gallery">
+            ${w.gallery.map((g, i) => `
+              <button class="gallery-item" data-shot="${i}" aria-label="Открыть крупно: ${g.title}">
+                <img src="${g.src}" alt="${g.alt}" loading="lazy">
+                <span class="gallery-cap">${g.title}</span>
+              </button>`).join("")}
+          </div>` : ""}
+        ${w.video ? `<video class="case-media" src="${w.video}" autoplay muted loop playsinline controls></video>` : ""}
+        ${(w.images || []).map(m => typeof m === "string"
+          ? `<img class="case-media" src="${m}" alt="" loading="lazy">`
+          : `<video class="case-media${m.vertical ? " vertical" : ""}" src="${m.video}"${m.poster ? ` poster="${m.poster}"` : ""} ${m.sound ? "controls preload=\"metadata\"" : "autoplay muted loop"} playsinline></video>`).join("")}`}
       ${w.note ? `<p class="case-note">${w.note}</p>` : ""}
       <div class="case-end">
         <a class="btn" href="${tgUrl}" target="_blank" rel="noopener">Хочу так же — написать в Telegram</a>
