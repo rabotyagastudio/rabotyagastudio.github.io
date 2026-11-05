@@ -96,7 +96,7 @@
     body.innerHTML = `
       <p class="case-kicker">
         <span>${service(w.service).title}${w.year ? ` · ${w.year}` : ""}</span>
-        ${w.concept ? `<span class="badge badge-line">Концепт</span>` : ""}
+        ${w.concept && w.badge !== false ? `<span class="badge badge-line">Концепт</span>` : ""}
       </p>
       <h2>${w.title}</h2>
       ${w.url ? `<a class="btn btn-sm btn-ghost case-url" href="${w.url}" target="_blank" rel="noopener">Открыть сайт ↗</a>` : ""}
