@@ -112,7 +112,7 @@
           </div>
         </div>` : ""}
       ${w.caseShowcase ? `
-        <section class="carousel-showcase" aria-label="Концепт каруселей для экспертов">
+        <section class="carousel-showcase" aria-label="Карусели для экспертов">
           <div class="carousel-thesis">
             <div class="carousel-thesis-copy">
               <p class="carousel-overline">${w.caseShowcase.eyebrow}</p>
