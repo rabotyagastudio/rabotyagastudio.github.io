@@ -5,7 +5,7 @@
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
   const tgUrl = `https://t.me/${S.telegram}`;
   const service = id => S.services.find(s => s.id === id) || { short: id, title: id };
-  // aliases — старые адреса кейса: { "старый-slug": "id серии, на которой открыть" }
+  // aliases — старые адреса кейса: { "старый-slug": "id серии, просмотр которой открыть" }
   const bySlug = slug => W.find(w => w.slug === slug || (w.aliases && slug in w.aliases));
 
   // Тексты и ссылки из data.js
@@ -124,17 +124,7 @@
               <button class="cs-link" data-series="${i}">Смотреть ${slidesWord(s.slides.length)} ${ICON_UR}</button>
             </div>
           </article>`).join("")}
-      </div>
-      ${w.allTitle ? `<h3 class="cs-all-title">${w.allTitle}</h3>` : ""}
-      ${w.series.map((s, i) => `
-        <section class="cs-set" id="set-${s.id}" aria-label="Серия «${s.name}»">
-          <div class="cs-set-head">
-            <p class="cs-eyebrow">${s.category} · ${slidesWord(s.slides.length)}</p>
-            <h3>${s.name}</h3>
-            ${s.intro ? `<p>${s.intro}</p>` : ""}
-          </div>
-          ${seriesGrid(s, i)}
-        </section>`).join("")}`}
+      </div>`}
       ${w.outro ? `<p class="cs-outro">${w.outro}</p>` : ""}
     </section>`;
 
@@ -209,8 +199,9 @@
     dlg.classList.toggle("case-series", !!w.series);
     if (!dlg.open) dlg.showModal();
     dlg.scrollTop = 0;
-    const set = setId && $(`#set-${setId}`, body);
-    if (set) requestAnimationFrame(() => set.scrollIntoView({ block: "start" }));
+    // Старый адрес серии — сразу открываем её просмотр поверх кейса
+    const si = setId ? w.series.findIndex(s => s.id === setId) : -1;
+    if (si >= 0) openSeries(w, si, $(`.cs-cover[data-series="${si}"]`, body));
   }
 
   function bindCompare(el) {
