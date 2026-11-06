@@ -197,36 +197,45 @@
   };
 
   // Моушен-кейс: видео ведут рассказ, статичные материалы открываются общим просмотрщиком.
-  const shumFilm = (m, id, vertical = false) => `
-    <figure class="shum-film${vertical ? " shum-film--vertical" : ""}">
+  const shumFilm = (m, id, cap) => `
+    <figure class="shum-film${m.h > m.w ? " shum-film--vertical" : ""}">
       <video id="shum-${id}" src="${m.video}" poster="${m.poster}" muted loop playsinline preload="metadata"
-        width="${vertical ? 1080 : 1920}" height="${vertical ? 1920 : 1080}" aria-label="${m.title}"></video>
-      <figcaption><span>${m.duration} · петля · без звука</span><button type="button" data-shum-toggle="shum-${id}" aria-controls="shum-${id}">Смотреть</button></figcaption>
+        width="${m.w}" height="${m.h}" style="aspect-ratio:${m.w}/${m.h}" aria-label="${m.title}"></video>
+      <figcaption><span>${cap || `${m.duration} · петля · без звука`}</span><button type="button" data-shum-toggle="shum-${id}" aria-controls="shum-${id}">Смотреть</button></figcaption>
     </figure>`;
   const shumStill = (w, i) => `<button class="shum-still" data-shot="${i}" aria-label="Открыть крупно: ${w.gallery[i].title}">
     <img src="${w.gallery[i].src}" alt="${w.gallery[i].alt}" width="1920" height="1200" loading="lazy">
     <span>${w.gallery[i].title}<span aria-hidden="true">↗</span></span></button>`;
-  const motionCase = w => `
+  const shumPhoto = p => `<figure class="shum-photo"><img src="${p.src}" alt="${p.alt}" width="1920" height="1072" loading="lazy"><figcaption>${p.caption}</figcaption></figure>`;
+  const motionCase = w => {
+    const m = w.motion;
+    return `
     <section class="shum" aria-label="${w.title}">
       <div class="shum-intro"><h2>${w.headline}</h2><p>${w.lead}</p></div>
-      ${shumFilm(w.motion.hero, 'logo')}
+      ${shumFilm(m.hero, 'stage', m.hero.caption)}
       <div class="shum-brief">
-        <div><h3>Задача</h3><p>${w.motion.task}</p></div>
-        <div><h3>Идея</h3><p>${w.motion.idea}</p></div>
-        <div><h3>Что сделано</h3><p>${w.motion.deliverables}</p></div>
+        <div><h3>Задача</h3><p>${m.task}</p></div>
+        <div><h3>Идея</h3><p>${m.idea}</p></div>
+        <div><h3>Что сделано</h3><p>${m.deliverables}</p></div>
       </div>
+      <div class="shum-heading"><h3>${m.modesTitle}</h3><p>${m.modesText}</p></div>
+      <div class="shum-modes">${m.modes.map((x, i) => shumFilm(x, 'mode' + i, `<b>0${i + 1} ${x.title}</b> ${x.text}`)).join('')}</div>
       <div class="shum-reel">
-        <div class="shum-copy"><p class="shum-label">В ленте</p><h3>${w.motion.reel.title}</h3><p>${w.motion.reel.description}</p>
-          <div class="shum-score" aria-label="120 ударов в минуту, четыре доли на план"><b>120</b><span>ударов в минуту<br>4 доли — новый план</span><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i></div>
+        <div class="shum-copy"><p class="shum-label">В ленте</p><h3>${m.reel.title}</h3><p>${m.reel.description}</p>
+          <div class="shum-score" aria-label="120 ударов в минуту, четыре доли на план"><b>120</b><span>ударов в минуту<br>4 доли — новый план</span><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i></div>
         </div>
-        ${shumFilm(w.motion.reel, 'reel', true)}
+        <div class="shum-pair">${shumFilm(m.reel, 'reel', '12 секунд')}${shumFilm(m.phone, 'phone', 'В руке у гостя')}</div>
       </div>
-      <div class="shum-heading"><h3>${w.motion.stage.title}</h3><p>${w.motion.stage.description}</p></div>
-      ${shumFilm(w.motion.stage, 'stage')}
-      <div class="shum-heading"><h3>За движением — система.</h3><p>Знак, сетка и ритм работают вместе. Материалы можно открыть крупно и пролистать.</p></div>
+      <div class="shum-heading"><h3>${m.city.title}</h3><p>${m.city.description}</p></div>
+      ${shumFilm(m.city, 'city', m.city.caption)}
+      ${shumPhoto(m.wall)}
+      <div class="shum-heading"><h3>${m.merch.title}</h3><p>${m.merch.description}</p></div>
+      ${shumPhoto(m.merch)}
+      <div class="shum-heading"><h3>За движением — система.</h3><p>Знак, режимы и ритм работают вместе. Материалы можно открыть крупно и пролистать.</p></div>
       ${shumStill(w, 0)}
       <div class="shum-details">${shumStill(w, 1)}${shumStill(w, 2)}</div>
     </section>`;
+  };
 
   let stopShum = () => {};
   function bindShum() {
@@ -240,6 +249,7 @@
     }), { root: dlg, threshold: .2 });
     videos.forEach(v => {
       const b = $(`[data-shum-toggle="${v.id}"]`, body);
+      if (!b) { observer.observe(v); return; }
       const sync = () => { b.textContent = v.paused ? 'Смотреть' : 'Пауза'; b.setAttribute('aria-label', `${v.paused ? 'Воспроизвести' : 'Остановить'}: ${v.getAttribute('aria-label')}`); };
       v.addEventListener('play', sync); v.addEventListener('pause', sync); sync();
       b.onclick = () => { if(v.paused) { pausedByUser.delete(v); v.play().catch(() => {}); } else { pausedByUser.add(v);v.pause(); } };

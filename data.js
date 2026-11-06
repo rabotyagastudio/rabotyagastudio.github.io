@@ -264,24 +264,35 @@ window.WORKS = [
     service: "motion",
     concept: true,
     year: 2026,
-    cover: "works/shum-motion/cover.jpg?v=6",
-    kicker: "Айдентика в движении · 2026",
-    headline: "Шум. Город на одной частоте.",
-    lead: "Живая айдентика фестиваля электронной музыки. От первого кадра в ленте до последнего сета на сцене.",
+    cover: "works/shum-motion/cover.jpg?v=7",
+    kicker: "Айдентика в движении · 2026",
+    headline: "Шум. Город на одной частоте.",
+    lead: "Живая айдентика фестиваля электронной музыки. Знак двигается под музыку на&nbsp;сцене, в&nbsp;ленте, на&nbsp;улице и&nbsp;в&nbsp;руках у&nbsp;гостей.",
     motion: {
-      hero: { video: "works/shum-motion/logo.mp4?v=6", poster: "works/shum-motion/logo-poster.jpg?v=6", title: "Знак становится сигналом", duration: "6 секунд", description: "Пиксельные колонки расходятся в эквалайзер и собираются обратно в «ШУМ». Одна сетка держит весь характер фестиваля." },
-      reel: { video: "works/shum-motion/reel.mp4?v=6", poster: "works/shum-motion/reel-poster.jpg?v=6", title: "Ритм считывается без звука", duration: "12 секунд", description: "Крупные слова, сдвиги дат и имена участников входят по счёту. Каждые четыре доли — новый план. Последний кадр возвращает к первому." },
-      stage: { video: "works/shum-motion/stage.mp4?v=6", poster: "works/shum-motion/stage-poster.jpg?v=6", title: "Тот же знак. Масштаб сцены.", duration: "8 секунд", description: "Широкая петля для сценического экрана. Волна идёт по краям, знак дышит в центре — айдентика остаётся узнаваемой издалека." },
-      task: "Сделать вымышленный городской фестиваль узнаваемым в трёх средах: в телефоне, на афише и на экране сцены.",
-      idea: "Вместо отдельной анимации поверх логотипа — знак, который сам умеет двигаться. Квадратный пиксель превращается в колонку, букву и ритмический след.",
-      deliverables: "Знак и правила движения, анимация логотипа, вертикальный ролик, сценическая петля и три афиши."
+      hero: { video: "works/shum-motion/stage.mp4?v=7", poster: "works/shum-motion/stage-poster.jpg?v=7", w: 1920, h: 1072, title: "Знак «Шум» на экране главной сцены", caption: "Главная сцена · петля 8 секунд · без звука" },
+      task: "Сделать вымышленный городской фестиваль узнаваемым везде, где он живёт: на&nbsp;экране сцены, в&nbsp;телефоне, на&nbsp;улице и&nbsp;в&nbsp;руках у&nbsp;гостей.",
+      idea: "Знак не стоит на&nbsp;месте: сплошные буквы ШУМ двигаются под 120 ударов в&nbsp;минуту. Один и&nbsp;тот же знак работает в&nbsp;четырёх режимах — от&nbsp;хрома на&nbsp;сцене до&nbsp;живого шрифта на&nbsp;афишах.",
+      deliverables: "Знак и&nbsp;четыре режима движения, фильм для экрана сцены, вертикальный ролик, городские афиши, билет, бейдж, браслет и&nbsp;мерч.",
+      modesTitle: "Один знак — четыре режима.",
+      modesText: "Каждый режим отвечает за&nbsp;свою среду. Вспышки и&nbsp;склейки идут ровно в&nbsp;долю, поэтому ритм видно даже без звука.",
+      modes: [
+        { video: "works/shum-motion/mode-chrome.mp4?v=7", poster: "works/shum-motion/mode-chrome-poster.jpg?v=7", w: 1280, h: 800, title: "Хром", text: "Сцена и&nbsp;большие экраны. На&nbsp;каждый такт по&nbsp;металлу пробегает блик." },
+        { video: "works/shum-motion/mode-light.mp4?v=7", poster: "works/shum-motion/mode-light-poster.jpg?v=7", w: 1280, h: 800, title: "Свет внутри", text: "Видео и&nbsp;трансляции. Буквы как окна, за&nbsp;которыми переливаются прожекторы." },
+        { video: "works/shum-motion/mode-flex.mp4?v=7", poster: "works/shum-motion/mode-flex-poster.jpg?v=7", w: 1280, h: 800, title: "Живой шрифт", text: "Лента и&nbsp;афиши. На&nbsp;каждую долю одна буква становится шире." },
+        { video: "works/shum-motion/mode-bend.mp4?v=7", poster: "works/shum-motion/mode-bend-poster.jpg?v=7", w: 1280, h: 800, title: "Изгиб", text: "Переходы и&nbsp;звук. По&nbsp;слову проходит волна и&nbsp;сразу отпускает." }
+      ],
+      reel: { video: "works/shum-motion/reel.mp4?v=7", poster: "works/shum-motion/reel-poster.jpg?v=7", w: 1080, h: 1920, title: "Ритм считывается без звука", description: "Крупные слова, сдвиги дат и&nbsp;имена участников входят по&nbsp;счёту. Каждые четыре доли — новый план. Последний кадр возвращает к&nbsp;первому." },
+      phone: { video: "works/shum-motion/phone.mp4?v=7", poster: "works/shum-motion/phone-poster.jpg?v=7", w: 1080, h: 1446, title: "Рилс «Шума» в телефоне у гостя фестиваля" },
+      city: { video: "works/shum-motion/busstop.mp4?v=7", poster: "works/shum-motion/busstop-poster.jpg?v=7", w: 1920, h: 1072, title: "Город на одной частоте.", description: "Цифровой лайтбокс на&nbsp;остановке играет живым шрифтом, а&nbsp;расклейка держит тот&nbsp;же ритм на&nbsp;бетоне.", caption: "Остановка ночью · петля 8 секунд" },
+      wall: { src: "works/shum-motion/wall.jpg?v=7", alt: "Шесть афиш «Шума» расклеены на бетонной стене: даты, участники и слоган", caption: "Расклейка в промзоне · три афиши серии" },
+      merch: { src: "works/shum-motion/merch.jpg?v=7", title: "В руках у гостей.", description: "Билет, бейдж, браслет и&nbsp;футболка собраны из&nbsp;того&nbsp;же знака и&nbsp;той&nbsp;же палитры.", alt: "Билет, бейдж участника, браслет и футболка с знаком «Шум» на тёмном бетоне", caption: "Билет, бейдж, браслет, футболка" }
     },
     gallery: [
-      { src: "works/shum-motion/01-system.jpg?v=6", title: "Один модуль — вся система", alt: "Матрица 23 × 7: сигнал, сборка, слово. Палитра, шрифты и правила движения" },
-      { src: "works/shum-motion/02-board.jpg?v=6", title: "Партитура на 24 удара", alt: "Шесть планов рилса по две секунды с четырьмя долями в каждом" },
-      { src: "works/shum-motion/03-posters.jpg?v=6", title: "Ритм остаётся на бумаге", alt: "Три афиши фестиваля «Шум»: слоган, даты и вымышленные участники" }
+      { src: "works/shum-motion/01-system.jpg?v=7", title: "Один знак — четыре режима", alt: "Знак «Шум» в четырёх режимах: хром, свет внутри, живой шрифт и изгиб. Ширина букв, ритм, шрифты и палитра" },
+      { src: "works/shum-motion/02-board.jpg?v=7", title: "Партитура на 24 удара", alt: "Шесть планов рилса по две секунды с четырьмя долями в каждом" },
+      { src: "works/shum-motion/03-posters.jpg?v=7", title: "Ритм остаётся на бумаге", alt: "Три афиши фестиваля «Шум»: слоган, даты и вымышленные участники" }
     ],
-    note: "Авторский проект. Фестиваль, площадка «Порт 707», программа и участники вымышлены.",
+    note: "Авторский проект. Фестиваль, площадка «Порт 707», программа и участники вымышлены.",
   },
   {
     slug: "speaker-video",

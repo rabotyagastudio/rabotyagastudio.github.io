@@ -648,15 +648,21 @@ h1, h2, h3 {
 .case-body .shum-intro h2 { max-width: none; margin: 0; font: 800 clamp(52px, 7cqi, 92px)/.94 ShumDisplay, sans-serif; letter-spacing: -.015em; text-transform: uppercase; text-wrap: balance; }
 .shum-intro p { max-width: 36ch; font-size: clamp(16px, 1.7cqi, 21px); line-height: 1.5; padding-bottom: 3px; }
 .shum-film { min-width: 0; margin: 0; }
-.shum-film video { width: 100%; height: auto; aspect-ratio: 16 / 9; background: #1EF2D0; object-fit: contain; }
+.shum-film video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #0A0E10; object-fit: cover; }
 .shum-film figcaption { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 50px; padding: 8px 0; color: var(--muted); font-size: 12px; }
 .shum-film button { padding: 9px 14px; min-width: 98px; border: 1px solid var(--ink); border-radius: 0; background: transparent; color: var(--ink); font-weight: 700; font-size: 13px; cursor: pointer; }
 .shum-film button:hover { background: var(--ink); color: var(--bg); }
 .shum-brief { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 40px; margin: 48px 0 90px; }
 .case-body .shum-brief h3, .shum-label { margin-bottom: 12px; font: 700 12px/1.3 var(--body); text-transform: uppercase; letter-spacing: .06em; }
 .shum-brief p { font-size: 15px; line-height: 1.65; }
-.shum-reel { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 8%; padding: 52px; background: #0A0E10; color: #E7EFEE; }
-.shum-reel .shum-film { width: 100%; max-width: 420px; justify-self: end; }
+.shum-reel { display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: 6%; padding: 52px; margin-top: 90px; background: #0A0E10; color: #E7EFEE; }
+.shum-pair { display: grid; grid-template-columns: 9fr 12fr; gap: 20px; align-items: end; }
+.shum-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.shum-modes figcaption span { line-height: 1.5; max-width: 46ch; }
+.shum-modes figcaption b { color: var(--ink); margin-right: 6px; }
+.shum-photo { margin: 24px 0 0; }
+.shum-photo img { display: block; width: 100%; height: auto; }
+.shum-photo figcaption { padding: 12px 0 8px; color: var(--muted); font-size: 12px; }
 .shum-film--vertical video { aspect-ratio: 9 / 16; }
 .shum-reel .shum-film figcaption { color: #B6C5C3; }
 .shum-reel .shum-film button { border-color: #E7EFEE; color: #E7EFEE; }
@@ -680,7 +686,8 @@ h1, h2, h3 {
 @container (max-width: 780px) {
   .shum-intro { gap: 24px; grid-template-columns: 1.15fr 1fr; }
   .shum-brief { gap: 24px; }
-  .shum-reel { padding: 28px; gap: 28px; }
+  .shum-reel { padding: 28px; gap: 28px; grid-template-columns: 1fr; }
+  .shum-modes { gap: 16px; }
   .shum-score { margin-top: 28px; }
 }
 @container (max-width: 580px) {
@@ -690,7 +697,8 @@ h1, h2, h3 {
   .shum-brief { grid-template-columns: 1fr; gap: 26px; margin: 30px 0 44px; }
   .case-body .shum-brief h3 { margin-bottom: 7px; }
   .shum-reel { grid-template-columns: 1fr; padding: 24px 18px 12px; gap: 28px; }
-  .shum-reel .shum-film { justify-self: center; max-width: 360px; }
+  .shum-pair { gap: 12px; }
+  .shum-modes { grid-template-columns: 1fr; }
   .case-body .shum-copy h3 { max-width: 13ch; margin: 10px 0 16px; font-size: 48px; }
   .shum-copy > p:not(.shum-label) { font-size: 15px; }
   .shum-score { display: none; }
