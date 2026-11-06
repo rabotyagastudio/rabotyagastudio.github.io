@@ -152,8 +152,9 @@
   // Кейс-презентация: герой, задача и система, сюжет слайдами (по клику — просмотр), детали с подписями, доска системы
   const deckCase = w => {
     const d = w.deck;
+    const gryadka = w.slug === "gryadka-deck";
     return `
-    <section class="cs dk" aria-label="${w.title}">
+    <section class="cs dk${gryadka ? " dk--gryadka" : ""}" aria-label="${w.title}">
       <div class="cs-intro">
         <h2>${w.headline || w.title}</h2>
         <div class="cs-intro-note">
@@ -173,12 +174,12 @@
         </div>` : ""}
       <div class="dk-head">
         <h3>Сюжет за ${slidesWord(d.slides.length)}</h3>
-        <p>Нажмите на слайд, чтобы листать крупно</p>
+        ${gryadka ? `<button class="btn btn-sm btn-ghost" data-series="0" data-at="0">Листать презентацию ${ICON_UR}</button>` : `<p>Нажмите на слайд, чтобы листать крупно</p>`}
       </div>
       <div class="dk-grid">
         ${d.slides.map((g, i) => `
           <button class="cs-slide" data-series="0" data-at="${i}" aria-label="Открыть крупно: ${g.title}">
-            <img src="${g.thumb || g.src}" alt="" loading="lazy">
+            <img src="${gryadka ? g.src : g.thumb || g.src}" alt="${gryadka ? g.alt : ""}" loading="lazy" width="1920" height="1080">
             <span><b>${String(i + 1).padStart(2, "0")}</b>${g.title}</span>
           </button>`).join("")}
       </div>
