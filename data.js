@@ -132,17 +132,18 @@ window.WORKS = [
         id: "sytno",
         name: "Сытно",
         category: "Нутрициолог",
-        note: "Завтраки, которые удобно сохранить",
-        intro: "Пять идей завтраков — в тёплой палитре, с крупными номерами и иллюстрациями. Каждый слайд можно сохранить отдельно.",
-        bg: "#E8432E",
+        note: "Утро на свой вкус",
+        intro: "Пять простых завтраков: блюда сверху, тёплый свет и крупная антиква. Круглое кадрирование рифмуется с посудой, рецепты набраны спокойным гротеском.",
+        bg: "#9F2C21",
+        // Те же слайды, что в отдельном кейсе «Карусель для нутрициолога «Сытно»»
         slides: [
-          { src: "works/carousels/sytno/1.png", thumb: "works/carousels/sytno/thumbs/1.jpg", title: "Обложка", alt: "Обложка карусели «Сытно»: 5 завтраков, после которых не тянет на сладкое" },
-          { src: "works/carousels/sytno/2.png", thumb: "works/carousels/sytno/thumbs/2.jpg", title: "Омлет с овощами", alt: "Завтрак 01 — омлет с овощами: белок и клетчатка держат сытость до обеда, белок 24 г, 10 минут" },
-          { src: "works/carousels/sytno/3.png", thumb: "works/carousels/sytno/thumbs/3.jpg", title: "Овсянка с ягодами", alt: "Завтрак 02 — овсянка с ягодами: медленные углеводы без резкого скачка сахара, 5 минут" },
-          { src: "works/carousels/sytno/4.png", thumb: "works/carousels/sytno/thumbs/4.jpg", title: "Тост с авокадо и яйцом", alt: "Завтрак 03 — тост с авокадо и яйцом: полезные жиры гасят тягу к сладкому, 7 минут" },
-          { src: "works/carousels/sytno/5.png", thumb: "works/carousels/sytno/thumbs/5.jpg", title: "Творог с грушей", alt: "Завтрак 04 — творог с грушей: сладко, но без сахара, белок 20 г, 3 минуты" },
-          { src: "works/carousels/sytno/6.png", thumb: "works/carousels/sytno/thumbs/6.jpg", title: "Гречка с яйцом", alt: "Завтрак 05 — гречка с яйцом: тёплый завтрак, который заряжает надолго, 15 минут" },
-          { src: "works/carousels/sytno/7.png", thumb: "works/carousels/sytno/thumbs/7.jpg", title: "Сохрани, чтобы не искать утром", alt: "Финальный слайд «Сытно»: сохрани, чтобы не искать утром, и напиши «МЕНЮ» в директ" }
+          { src: "works/sytno-carousel/01-cover.jpg", thumb: "works/sytno-carousel/thumbs/01-cover.jpg", title: "Обложка", alt: "Обложка карусели «Сытно»: утро на свой вкус, 5 простых завтраков, тост с авокадо и яйцом на тарелке" },
+          { src: "works/sytno-carousel/02-omelette.jpg", thumb: "works/sytno-carousel/thumbs/02-omelette.jpg", title: "Омлет с овощами", alt: "Завтрак 01 — омлет с овощами: яйца, томаты, шпинат; сначала слегка обжарить овощи, потом залить яйцами" },
+          { src: "works/sytno-carousel/03-oats.jpg", thumb: "works/sytno-carousel/thumbs/03-oats.jpg", title: "Овсянка с ягодами", alt: "Завтрак 02 — овсянка с ягодами и грецкими орехами: ягоды добавить в конце" },
+          { src: "works/sytno-carousel/04-toast.jpg", thumb: "works/sytno-carousel/thumbs/04-toast.jpg", title: "Тост с авокадо и яйцом", alt: "Завтрак 03 — тост с авокадо и варёным яйцом: яйцо можно сварить с вечера" },
+          { src: "works/sytno-carousel/05-curd.jpg", thumb: "works/sytno-carousel/thumbs/05-curd.jpg", title: "Творог с грушей", alt: "Завтрак 04 — творог с грушей, йогуртом и корицей, без плиты" },
+          { src: "works/sytno-carousel/06-buckwheat.jpg", thumb: "works/sytno-carousel/thumbs/06-buckwheat.jpg", title: "Гречка с яйцом", alt: "Завтрак 05 — гречка с глазуньей, огурцом и укропом из готовой крупы" },
+          { src: "works/sytno-carousel/07-save.jpg", thumb: "works/sytno-carousel/thumbs/07-save.jpg", title: "Сохраните подборку", alt: "Финальный слайд «Сытно»: пять идей — одна подборка, сохраните подборку" }
         ]
       },
       {
