@@ -108,6 +108,7 @@
           <a class="btn" href="${tgUrl}" target="_blank" rel="noopener">${w.cta || "Обсудить задачу"} ${ICON_UR}</a>
         </div>
       </div>
+      ${w.series.length === 1 ? seriesGrid(w.series[0]) : `
       <div class="cs-projects">
         ${w.series.map((s, i) => `
           <article style="--series-bg: ${s.bg || "var(--card)"}">
@@ -122,9 +123,29 @@
               <button class="cs-link" data-series="${i}">Смотреть ${slidesWord(s.slides.length)} ${ICON_UR}</button>
             </div>
           </article>`).join("")}
-      </div>
+      </div>`}
       ${w.outro ? `<p class="cs-outro">${w.outro}</p>` : ""}
     </section>`;
+
+  // Одна серия: все слайды сеткой, последняя ячейка — палитра, шрифты и формат
+  const seriesGrid = s => `
+    <div class="cs-grid" style="--series-bg: ${s.bg || "var(--card)"}">
+      ${s.slides.map((g, i) => `
+        <button class="cs-slide" data-series="0" data-at="${i}" aria-label="Открыть крупно: ${g.title}">
+          <img src="${g.thumb || g.src}" alt="">
+          <span><b>${String(i + 1).padStart(2, "0")}</b>${g.title}</span>
+        </button>`).join("")}
+      ${s.spec ? `
+        <div class="cs-spec">
+          ${s.spec.palette ? `
+            <p class="cs-eyebrow">Палитра</p>
+            <ul class="cs-swatches">
+              ${s.spec.palette.map(c => `<li><i style="background: ${c.hex}"></i>${c.name}<small>${c.hex}</small></li>`).join("")}
+            </ul>` : ""}
+          ${s.spec.fonts ? `<p class="cs-eyebrow">Шрифты</p><p>${s.spec.fonts}</p>` : ""}
+          ${s.spec.format ? `<p class="cs-eyebrow">Формат</p><p>${s.spec.format}</p>` : ""}
+        </div>` : ""}
+    </div>`;
 
   function openCase(w) {
     const i = W.indexOf(w);
@@ -172,7 +193,7 @@
     const cmp = $(".compare", body);
     if (cmp) bindCompare(cmp);
     $$("[data-shot]", body).forEach(b => { b.onclick = () => openShot(w.gallery, +b.dataset.shot); });
-    $$("[data-series]", body).forEach(b => { b.onclick = () => openSeries(w, +b.dataset.series, b); });
+    $$("[data-series]", body).forEach(b => { b.onclick = () => openSeries(w, +b.dataset.series, b, +(b.dataset.at || 0)); });
     dlg.classList.toggle("case-series", !!w.series);
     if (!dlg.open) dlg.showModal();
     dlg.scrollTop = 0;
@@ -256,9 +277,12 @@
   let svAt = 0;
   let svFrom = null;
 
-  function renderSeries(focusTab) {
+  function renderSeries(focusTab, at = 0) {
     const s = svWork.series[svSet];
+    const several = svWork.series.length > 1;
     sv.style.setProperty("--series-bg", s.bg || "var(--card)");
+    $(".sv-back-text", sv).textContent = several ? "Все серии" : "Все слайды";
+    $(".sv-tabs", sv).hidden = !several;
     $(".sv-tabs", sv).innerHTML = svWork.series.map((x, i) =>
       `<button data-sv-set="${i}"${i === svSet ? ` aria-current="true"` : ""}>${x.name}</button>`).join("");
     $(".sv-eyebrow", sv).textContent = `${s.category} · ${slidesWord(s.slides.length)}`;
@@ -273,7 +297,7 @@
     note.hidden = !s.disclaimer;
     $$("[data-sv-set]", sv).forEach(b => { b.onclick = () => { svSet = +b.dataset.svSet; renderSeries(true); }; });
     $$("[data-sv-at]", sv).forEach(b => { b.onclick = () => showSlide(+b.dataset.svAt); });
-    showSlide(0);
+    showSlide(at);
     if (focusTab) $(`[data-sv-set="${svSet}"]`, sv).focus();
   }
 
@@ -297,18 +321,21 @@
     [svAt - 1, svAt + 1].forEach(j => { if (slides[j]) new Image().src = slides[j].src; });
   }
 
-  function openSeries(w, i, from) {
+  function openSeries(w, i, from, at = 0) {
     svWork = w;
     svSet = i;
     svFrom = from;
-    renderSeries();
+    renderSeries(false, at);
     if (!sv.open) sv.showModal();
   }
 
   svPrev.onclick = () => showSlide(svAt - 1);
   svNext.onclick = () => showSlide(svAt + 1);
   $$("[data-sv-close]", sv).forEach(b => { b.onclick = () => sv.close(); });
-  sv.addEventListener("close", () => { svFrom?.focus(); });
+  // В сетке слайдов фокус встаёт на тот слайд, до которого долистали; иначе — на кнопку, с которой открыли
+  sv.addEventListener("close", () => {
+    ($(`[data-series="${svSet}"][data-at="${svAt}"]`, body) || svFrom)?.focus();
+  });
   sv.addEventListener("keydown", e => {
     if (e.key === "ArrowLeft") showSlide(svAt - 1);
     else if (e.key === "ArrowRight") showSlide(svAt + 1);

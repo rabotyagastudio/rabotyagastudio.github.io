@@ -183,6 +183,50 @@ window.WORKS = [
     ]
   },
   {
+    // Одна серия: все слайды сеткой, по клику — тот же просмотр, что у «Карусели для экспертов».
+    // spec — плитка с палитрой, шрифтами и форматом в последней ячейке сетки
+    slug: "sytno-carousel",
+    title: "Карусель для нутрициолога «Сытно»",
+    service: "carousels",
+    concept: true,
+    badge: false,
+    year: 2026,
+    cover: "works/sytno-carousel/cover.jpg",
+    kicker: "Карусели · Работяга Studio",
+    headline: "Утро<br>на свой вкус",
+    lead: "Карусель для нутрициолога «Сытно»: пять простых завтраков, которые хочется сохранить. Блюда сверху, тёплый свет и крупная антиква.",
+    cta: "Обсудить карусель",
+    series: [
+      {
+        id: "sytno-morning",
+        name: "Сытно.",
+        category: "Нутрициолог",
+        note: "Утро на свой вкус",
+        intro: "Маленькая гастрономическая редакция, которую удобно сохранить. Круглое кадрирование рифмуется с посудой, антиква задаёт тон, спокойный гротеск отвечает за рецепты.",
+        bg: "#F5EEDC",
+        spec: {
+          palette: [
+            { name: "Томатный", hex: "#9F2C21" },
+            { name: "Сливочный", hex: "#F5EEDC" },
+            { name: "Масляный", hex: "#EAC967" },
+            { name: "Тёплый тёмный", hex: "#30251F" }
+          ],
+          fonts: "Prata — заголовки<br>Manrope — рецепты",
+          format: "7 слайдов · 1080&nbsp;×&nbsp;1440"
+        },
+        slides: [
+          { src: "works/sytno-carousel/01-cover.jpg", thumb: "works/sytno-carousel/thumbs/01-cover.jpg", title: "Обложка", alt: "Обложка карусели «Сытно»: утро на свой вкус, 5 простых завтраков, тост с авокадо и яйцом на тарелке" },
+          { src: "works/sytno-carousel/02-omelette.jpg", thumb: "works/sytno-carousel/thumbs/02-omelette.jpg", title: "Омлет с овощами", alt: "Завтрак 01 — омлет с овощами: яйца, томаты, шпинат; сначала слегка обжарить овощи, потом залить яйцами" },
+          { src: "works/sytno-carousel/03-oats.jpg", thumb: "works/sytno-carousel/thumbs/03-oats.jpg", title: "Овсянка с ягодами", alt: "Завтрак 02 — овсянка с ягодами и грецкими орехами: ягоды добавить в конце" },
+          { src: "works/sytno-carousel/04-toast.jpg", thumb: "works/sytno-carousel/thumbs/04-toast.jpg", title: "Тост с авокадо и яйцом", alt: "Завтрак 03 — тост с авокадо и варёным яйцом: яйцо можно сварить с вечера" },
+          { src: "works/sytno-carousel/05-curd.jpg", thumb: "works/sytno-carousel/thumbs/05-curd.jpg", title: "Творог с грушей", alt: "Завтрак 04 — творог с грушей, йогуртом и корицей, без плиты" },
+          { src: "works/sytno-carousel/06-buckwheat.jpg", thumb: "works/sytno-carousel/thumbs/06-buckwheat.jpg", title: "Гречка с яйцом", alt: "Завтрак 05 — гречка с глазуньей, огурцом и укропом из готовой крупы" },
+          { src: "works/sytno-carousel/07-save.jpg", thumb: "works/sytno-carousel/thumbs/07-save.jpg", title: "Сохраните подборку", alt: "Финальный слайд «Сытно»: пять идей — одна подборка, сохраните подборку" }
+        ]
+      }
+    ]
+  },
+  {
     slug: "gryadka-deck",
     title: "Презентация для инвесторов «Грядка»",
     service: "slides",
