@@ -266,7 +266,7 @@
     $(".sv-intro", sv).textContent = s.intro || "";
     $(".sv-strip", sv).innerHTML = s.slides.map((g, i) => `
       <button data-sv-at="${i}" aria-label="Слайд ${i + 1}: ${g.title}">
-        <img src="${g.src}" alt="" loading="lazy"><span>${String(i + 1).padStart(2, "0")}</span>
+        <img src="${g.thumb || g.src}" alt=""><span>${String(i + 1).padStart(2, "0")}</span>
       </button>`).join("");
     const note = $(".sv-note", sv);
     note.textContent = s.disclaimer || "";

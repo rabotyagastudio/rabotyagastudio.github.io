@@ -120,7 +120,8 @@ window.WORKS = [
     year: 2026,
     cover: "works/carousels/cover-kubyshka.jpg",
     // Кейс из нескольких серий: вместо задачи/решения — обложки серий и просмотр с переключением.
-    // kicker — строка над заголовком; headline и lead можно с <br>; disclaimer — сноска под серией в просмотре
+    // kicker — строка над заголовком; headline и lead можно с <br>; disclaimer — сноска под серией в просмотре;
+    // thumb — лёгкая миниатюра для ленты под слайдом (160 px по ширине), без неё лента грузит сам слайд
     kicker: "Карусели · Работяга Studio",
     headline: "Карусели<br>для экспертов",
     lead: "Сложная тема — понятная серия.<br> Дизайн, который помогает читать дальше.",
@@ -135,13 +136,13 @@ window.WORKS = [
         intro: "Пять идей завтраков — в тёплой палитре, с крупными номерами и иллюстрациями. Каждый слайд можно сохранить отдельно.",
         bg: "#E8432E",
         slides: [
-          { src: "works/carousels/sytno/1.png", title: "Обложка", alt: "Обложка карусели «Сытно»: 5 завтраков, после которых не тянет на сладкое" },
-          { src: "works/carousels/sytno/2.png", title: "Омлет с овощами", alt: "Завтрак 01 — омлет с овощами: белок и клетчатка держат сытость до обеда, белок 24 г, 10 минут" },
-          { src: "works/carousels/sytno/3.png", title: "Овсянка с ягодами", alt: "Завтрак 02 — овсянка с ягодами: медленные углеводы без резкого скачка сахара, 5 минут" },
-          { src: "works/carousels/sytno/4.png", title: "Тост с авокадо и яйцом", alt: "Завтрак 03 — тост с авокадо и яйцом: полезные жиры гасят тягу к сладкому, 7 минут" },
-          { src: "works/carousels/sytno/5.png", title: "Творог с грушей", alt: "Завтрак 04 — творог с грушей: сладко, но без сахара, белок 20 г, 3 минуты" },
-          { src: "works/carousels/sytno/6.png", title: "Гречка с яйцом", alt: "Завтрак 05 — гречка с яйцом: тёплый завтрак, который заряжает надолго, 15 минут" },
-          { src: "works/carousels/sytno/7.png", title: "Сохрани, чтобы не искать утром", alt: "Финальный слайд «Сытно»: сохрани, чтобы не искать утром, и напиши «МЕНЮ» в директ" }
+          { src: "works/carousels/sytno/1.png", thumb: "works/carousels/sytno/thumbs/1.jpg", title: "Обложка", alt: "Обложка карусели «Сытно»: 5 завтраков, после которых не тянет на сладкое" },
+          { src: "works/carousels/sytno/2.png", thumb: "works/carousels/sytno/thumbs/2.jpg", title: "Омлет с овощами", alt: "Завтрак 01 — омлет с овощами: белок и клетчатка держат сытость до обеда, белок 24 г, 10 минут" },
+          { src: "works/carousels/sytno/3.png", thumb: "works/carousels/sytno/thumbs/3.jpg", title: "Овсянка с ягодами", alt: "Завтрак 02 — овсянка с ягодами: медленные углеводы без резкого скачка сахара, 5 минут" },
+          { src: "works/carousels/sytno/4.png", thumb: "works/carousels/sytno/thumbs/4.jpg", title: "Тост с авокадо и яйцом", alt: "Завтрак 03 — тост с авокадо и яйцом: полезные жиры гасят тягу к сладкому, 7 минут" },
+          { src: "works/carousels/sytno/5.png", thumb: "works/carousels/sytno/thumbs/5.jpg", title: "Творог с грушей", alt: "Завтрак 04 — творог с грушей: сладко, но без сахара, белок 20 г, 3 минуты" },
+          { src: "works/carousels/sytno/6.png", thumb: "works/carousels/sytno/thumbs/6.jpg", title: "Гречка с яйцом", alt: "Завтрак 05 — гречка с яйцом: тёплый завтрак, который заряжает надолго, 15 минут" },
+          { src: "works/carousels/sytno/7.png", thumb: "works/carousels/sytno/thumbs/7.jpg", title: "Сохрани, чтобы не искать утром", alt: "Финальный слайд «Сытно»: сохрани, чтобы не искать утром, и напиши «МЕНЮ» в директ" }
         ]
       },
       {
@@ -153,13 +154,13 @@ window.WORKS = [
         bg: "#F0EEE7",
         disclaimer: "Расчёты иллюстрируют сценарий и не обещают конкретный финансовый результат.",
         slides: [
-          { src: "works/carousels/kubyshka/01-cover.svg", title: "Доход скачет. Запас растёт.", alt: "Типографическая обложка карусели «Кубышка» о финансовом резерве при неровном доходе" },
-          { src: "works/carousels/kubyshka/02-percent-examples.svg", title: "Процент один. Суммы разные.", alt: "Три условных примера: от разных поступлений в резерв уходит десять процентов" },
-          { src: "works/carousels/kubyshka/03-allocation.svg", title: "Раздели поступление.", alt: "Пропорция распределения поступления: девяносто процентов и десять процентов в резерв" },
-          { src: "works/carousels/kubyshka/04-first-milestone.svg", title: "Первый рубеж.", alt: "Условная цель накоплений: 180 тысяч рублей на три месяца обязательных расходов по 60 тысяч" },
-          { src: "works/carousels/kubyshka/05-change-the-pace.svg", title: "Темп можно менять.", alt: "Как менять темп накоплений при разном доходе без давления на себя" },
-          { src: "works/carousels/kubyshka/06-annual-calculation.svg", title: "Расчёт за год.", alt: "Расчёт: средний доход 150 тысяч рублей в месяц, десять процентов, двенадцать месяцев — 180 тысяч рублей" },
-          { src: "works/carousels/kubyshka/07-save-the-plan.svg", title: "Сохрани схему.", alt: "Заключительный слайд карусели «Кубышка» с призывом сохранить схему" }
+          { src: "works/carousels/kubyshka/01-cover.svg", thumb: "works/carousels/kubyshka/thumbs/01-cover.jpg", title: "Доход скачет. Запас растёт.", alt: "Типографическая обложка карусели «Кубышка» о финансовом резерве при неровном доходе" },
+          { src: "works/carousels/kubyshka/02-percent-examples.svg", thumb: "works/carousels/kubyshka/thumbs/02-percent-examples.jpg", title: "Процент один. Суммы разные.", alt: "Три условных примера: от разных поступлений в резерв уходит десять процентов" },
+          { src: "works/carousels/kubyshka/03-allocation.svg", thumb: "works/carousels/kubyshka/thumbs/03-allocation.jpg", title: "Раздели поступление.", alt: "Пропорция распределения поступления: девяносто процентов и десять процентов в резерв" },
+          { src: "works/carousels/kubyshka/04-first-milestone.svg", thumb: "works/carousels/kubyshka/thumbs/04-first-milestone.jpg", title: "Первый рубеж.", alt: "Условная цель накоплений: 180 тысяч рублей на три месяца обязательных расходов по 60 тысяч" },
+          { src: "works/carousels/kubyshka/05-change-the-pace.svg", thumb: "works/carousels/kubyshka/thumbs/05-change-the-pace.jpg", title: "Темп можно менять.", alt: "Как менять темп накоплений при разном доходе без давления на себя" },
+          { src: "works/carousels/kubyshka/06-annual-calculation.svg", thumb: "works/carousels/kubyshka/thumbs/06-annual-calculation.jpg", title: "Расчёт за год.", alt: "Расчёт: средний доход 150 тысяч рублей в месяц, десять процентов, двенадцать месяцев — 180 тысяч рублей" },
+          { src: "works/carousels/kubyshka/07-save-the-plan.svg", thumb: "works/carousels/kubyshka/thumbs/07-save-the-plan.jpg", title: "Сохрани схему.", alt: "Заключительный слайд карусели «Кубышка» с призывом сохранить схему" }
         ]
       },
       {
@@ -170,13 +171,13 @@ window.WORKS = [
         intro: "Серия строится на сравнении: расплывчатый пункт договора и конкретная формулировка. Типографика напоминает сам документ.",
         bg: "#F2EFE8",
         slides: [
-          { src: "works/carousels/bukva/1.png", title: "Договор с подрядчиком", alt: "Обложка карусели «Буква»: договор с подрядчиком, 5 пунктов, которые сберегут деньги" },
-          { src: "works/carousels/bukva/2.png", title: "Предмет", alt: "§ 1 Предмет: как пишут «разработка сайта», как надо «сайт из 5 страниц по ТЗ из приложения 1»" },
-          { src: "works/carousels/bukva/3.png", title: "Сроки", alt: "§ 2 Сроки: как пишут «в разумный срок», как надо «до 15 марта 2026 года»" },
-          { src: "works/carousels/bukva/4.png", title: "Оплата", alt: "§ 3 Оплата: как пишут «оплата по договорённости», как надо «аванс 30%, остальное — после акта»" },
-          { src: "works/carousels/bukva/5.png", title: "Приёмка", alt: "§ 4 Приёмка: как пишут «работа считается принятой», как надо «5 рабочих дней на замечания»" },
-          { src: "works/carousels/bukva/6.png", title: "Неустойка", alt: "§ 5 Неустойка: как пишут «стороны несут ответственность», как надо «0,1% за каждый день просрочки»" },
-          { src: "works/carousels/bukva/7.png", title: "Проверка договора", alt: "Финальный слайд «Буква»: проверю ваш договор за один день, пришлите файл в директ" }
+          { src: "works/carousels/bukva/1.png", thumb: "works/carousels/bukva/thumbs/1.jpg", title: "Договор с подрядчиком", alt: "Обложка карусели «Буква»: договор с подрядчиком, 5 пунктов, которые сберегут деньги" },
+          { src: "works/carousels/bukva/2.png", thumb: "works/carousels/bukva/thumbs/2.jpg", title: "Предмет", alt: "§ 1 Предмет: как пишут «разработка сайта», как надо «сайт из 5 страниц по ТЗ из приложения 1»" },
+          { src: "works/carousels/bukva/3.png", thumb: "works/carousels/bukva/thumbs/3.jpg", title: "Сроки", alt: "§ 2 Сроки: как пишут «в разумный срок», как надо «до 15 марта 2026 года»" },
+          { src: "works/carousels/bukva/4.png", thumb: "works/carousels/bukva/thumbs/4.jpg", title: "Оплата", alt: "§ 3 Оплата: как пишут «оплата по договорённости», как надо «аванс 30%, остальное — после акта»" },
+          { src: "works/carousels/bukva/5.png", thumb: "works/carousels/bukva/thumbs/5.jpg", title: "Приёмка", alt: "§ 4 Приёмка: как пишут «работа считается принятой», как надо «5 рабочих дней на замечания»" },
+          { src: "works/carousels/bukva/6.png", thumb: "works/carousels/bukva/thumbs/6.jpg", title: "Неустойка", alt: "§ 5 Неустойка: как пишут «стороны несут ответственность», как надо «0,1% за каждый день просрочки»" },
+          { src: "works/carousels/bukva/7.png", thumb: "works/carousels/bukva/thumbs/7.jpg", title: "Проверка договора", alt: "Финальный слайд «Буква»: проверю ваш договор за один день, пришлите файл в директ" }
         ]
       }
     ]
