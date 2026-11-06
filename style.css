@@ -638,3 +638,69 @@ h1, h2, h3 {
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 20px rgb(0 0 0 / .25);
 }
+
+/* Только «Шум»: видео ведут кейс, спокойное поле оставляет им весь контраст. */
+@font-face { font-family: ShumDisplay; src: url('works/shum-motion/fonts/sofia-condensed-800.ttf') format('truetype'); font-weight: 800; font-display: swap; }
+.case.case-shum { width: min(1440px, calc(100% - 32px)); --bg: #E7EFEE; --ink: #0A0E10; --muted: #4F5E5D; --line: #B6C5C3; --accent: #0A0E10; border-radius: 8px; }
+.case-shum .case-kicker { font-size: 13px; letter-spacing: .025em; }
+.shum { container-type: inline-size; }
+.shum-intro { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: end; margin: 24px 0 32px; }
+.case-body .shum-intro h2 { max-width: none; margin: 0; font: 800 clamp(52px, 7cqi, 92px)/.94 ShumDisplay, sans-serif; letter-spacing: -.015em; text-transform: uppercase; text-wrap: balance; }
+.shum-intro p { max-width: 36ch; font-size: clamp(16px, 1.7cqi, 21px); line-height: 1.5; padding-bottom: 3px; }
+.shum-film { min-width: 0; margin: 0; }
+.shum-film video { width: 100%; height: auto; aspect-ratio: 16 / 9; background: #1EF2D0; object-fit: contain; }
+.shum-film figcaption { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 50px; padding: 8px 0; color: var(--muted); font-size: 12px; }
+.shum-film button { padding: 9px 14px; min-width: 98px; border: 1px solid var(--ink); border-radius: 0; background: transparent; color: var(--ink); font-weight: 700; font-size: 13px; cursor: pointer; }
+.shum-film button:hover { background: var(--ink); color: var(--bg); }
+.shum-brief { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 40px; margin: 48px 0 90px; }
+.case-body .shum-brief h3, .shum-label { margin-bottom: 12px; font: 700 12px/1.3 var(--body); text-transform: uppercase; letter-spacing: .06em; }
+.shum-brief p { font-size: 15px; line-height: 1.65; }
+.shum-reel { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 8%; padding: 52px; background: #0A0E10; color: #E7EFEE; }
+.shum-reel .shum-film { width: 100%; max-width: 420px; justify-self: end; }
+.shum-film--vertical video { aspect-ratio: 9 / 16; }
+.shum-reel .shum-film figcaption { color: #B6C5C3; }
+.shum-reel .shum-film button { border-color: #E7EFEE; color: #E7EFEE; }
+.shum-reel .shum-film button:hover { background: #1EF2D0; border-color: #1EF2D0; color: #0A0E10; }
+.case-body .shum-copy h3 { margin: 16px 0 24px; font: 800 clamp(44px, 5.5cqi, 76px)/.98 ShumDisplay, sans-serif; text-transform: uppercase; letter-spacing: -.01em; text-wrap: balance; }
+.shum-copy > p:not(.shum-label) { max-width: 34ch; font-size: 16px; line-height: 1.6; color: #B6C5C3; }
+.shum-score { display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 12px; align-items: end; margin-top: 48px; max-width: 320px; }
+.shum-score b { grid-column: span 2; color: #1EF2D0; font: 800 112px/.8 ShumDisplay, sans-serif; }
+.shum-score span { grid-column: span 2; font-size: 12px; line-height: 1.5; }
+.shum-score i { height: 12px; margin-top: 24px; background: #5C6D6B; }
+.shum-score i:first-of-type { height: 28px; background: #1EF2D0; }
+.shum-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin: 84px 0 28px; }
+.case-body .shum-heading h3 { font: 800 clamp(36px, 4.7cqi, 64px)/1 ShumDisplay, sans-serif; text-transform: uppercase; letter-spacing: -.01em; }
+.shum-heading p { font-size: 15px; line-height: 1.6; max-width: 48ch; }
+.shum-still { display: block; padding: 0; width: 100%; min-width: 0; border: 0; background: none; color: var(--ink); text-align: left; cursor: zoom-in; }
+.shum-still img { display: block; width: 100%; height: auto; }
+.shum-still > span { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0 18px; font-size: 13px; font-weight: 700; }
+.shum-still:hover > span { text-decoration: underline; }
+.shum-details { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; }
+.case-shum .case-note { max-width: 68ch; font-size: 13px; }
+@container (max-width: 780px) {
+  .shum-intro { gap: 24px; grid-template-columns: 1.15fr 1fr; }
+  .shum-brief { gap: 24px; }
+  .shum-reel { padding: 28px; gap: 28px; }
+  .shum-score { margin-top: 28px; }
+}
+@container (max-width: 580px) {
+  .shum-intro { display: block; margin: 24px 0; }
+  .case-body .shum-intro h2 { font-size: clamp(50px, 15cqi, 76px); max-width: 14ch; }
+  .shum-intro p { margin-top: 18px; font-size: 15px; }
+  .shum-brief { grid-template-columns: 1fr; gap: 26px; margin: 30px 0 44px; }
+  .case-body .shum-brief h3 { margin-bottom: 7px; }
+  .shum-reel { grid-template-columns: 1fr; padding: 24px 18px 12px; gap: 28px; }
+  .shum-reel .shum-film { justify-self: center; max-width: 360px; }
+  .case-body .shum-copy h3 { max-width: 13ch; margin: 10px 0 16px; font-size: 48px; }
+  .shum-copy > p:not(.shum-label) { font-size: 15px; }
+  .shum-score { display: none; }
+  .shum-heading { grid-template-columns: 1fr; gap: 16px; margin: 44px 0 22px; }
+  .shum-details { grid-template-columns: 1fr; gap: 22px; margin-top: 22px; }
+  .shum-film figcaption { font-size: 10px; gap: 8px; }
+  .shum-film button { min-width: 82px; padding: 10px; font-size: 12px; }
+}
+@media (max-width: 600px) {
+  .case.case-shum { width: 100%; max-height: 100dvh; height: 100dvh; border-radius: 0; }
+  .case-shum .case-bar { padding: 10px 16px; }
+  .case-shum .case-bar button { font-size: 12px; padding: 0 12px; }
+}
