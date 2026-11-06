@@ -149,6 +149,52 @@
         </div>` : ""}
     </div>`;
 
+  // Кейс-презентация: герой, задача и система, сюжет слайдами (по клику — просмотр), детали с подписями, доска системы
+  const deckCase = w => {
+    const d = w.deck;
+    return `
+    <section class="cs dk" aria-label="${w.title}">
+      <div class="cs-intro">
+        <h2>${w.headline || w.title}</h2>
+        <div class="cs-intro-note">
+          ${w.lead ? `<p>${w.lead}</p>` : ""}
+          <a class="btn" href="${tgUrl}" target="_blank" rel="noopener">${w.cta || "Обсудить задачу"} ${ICON_UR}</a>
+        </div>
+      </div>
+      ${d.hero ? `<img class="dk-hero" src="${d.hero.src}" alt="${d.hero.alt}">` : ""}
+      ${d.facts ? `
+        <div class="dk-facts">
+          ${d.facts.map(f => `
+            <div>
+              <h3>${f.title}</h3>
+              <p>${f.text}</p>
+              ${f.palette ? `<ul class="dk-dots" aria-label="Палитра">${f.palette.map(c => `<li style="background: ${c}" title="${c}"></li>`).join("")}</ul>` : ""}
+            </div>`).join("")}
+        </div>` : ""}
+      <div class="dk-head">
+        <h3>Сюжет за ${slidesWord(d.slides.length)}</h3>
+        <p>Нажмите на слайд, чтобы листать крупно</p>
+      </div>
+      <div class="dk-grid">
+        ${d.slides.map((g, i) => `
+          <button class="cs-slide" data-series="0" data-at="${i}" aria-label="Открыть крупно: ${g.title}">
+            <img src="${g.thumb || g.src}" alt="" loading="lazy">
+            <span><b>${String(i + 1).padStart(2, "0")}</b>${g.title}</span>
+          </button>`).join("")}
+      </div>
+      ${d.details ? `
+        <div class="dk-head"><h3>Детали</h3></div>
+        <div class="dk-details">
+          ${d.details.map(g => `
+            <figure>
+              <img src="${g.src}" alt="${g.alt}" loading="lazy">
+              <figcaption><b>${g.title}</b>${g.text}</figcaption>
+            </figure>`).join("")}
+        </div>` : ""}
+      ${d.board ? `<img class="dk-board" src="${d.board.src}" alt="${d.board.alt}" loading="lazy">` : ""}
+    </section>`;
+  };
+
   function openCase(w, setId) {
     const i = W.indexOf(w);
     const next = W[(i + 1) % W.length];
@@ -157,7 +203,7 @@
         <span>${w.kicker || `${service(w.service).title}${w.year ? ` · ${w.year}` : ""}`}</span>
         ${w.concept && w.badge !== false ? `<span class="badge badge-line">Концепт</span>` : ""}
       </p>
-      ${w.series ? "" : `<h2>${w.title}</h2>`}
+      ${w.series || w.deck ? "" : `<h2>${w.title}</h2>`}
       ${w.url ? `<a class="btn btn-sm btn-ghost case-url" href="${w.url}" target="_blank" rel="noopener">Открыть сайт ↗</a>` : ""}
       ${w.before && w.after ? `
         <div class="compare">
@@ -170,7 +216,7 @@
             <span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 3 12l6 6M15 6l6 6-6 6"/></svg></span>
           </div>
         </div>` : ""}
-      ${w.series ? seriesCase(w) : `
+      ${w.series ? seriesCase(w) : w.deck ? deckCase(w) : `
         <div class="case-text">
           ${w.task ? `<div><h3>Задача</h3><p>${w.task}</p></div>` : ""}
           ${w.solution ? `<div><h3>Решение</h3><p>${w.solution}</p></div>` : ""}
@@ -195,8 +241,10 @@
     const cmp = $(".compare", body);
     if (cmp) bindCompare(cmp);
     $$("[data-shot]", body).forEach(b => { b.onclick = () => openShot(w.gallery, +b.dataset.shot); });
-    $$("[data-series]", body).forEach(b => { b.onclick = () => openSeries(w, +b.dataset.series, b, +(b.dataset.at || 0)); });
-    dlg.classList.toggle("case-series", !!w.series);
+    // Слайды презентации листаются тем же просмотром, что и серии: одна широкая серия
+    const sw = w.deck ? { series: [{ ...w.deck, wide: true }] } : w;
+    $$("[data-series]", body).forEach(b => { b.onclick = () => openSeries(sw, +b.dataset.series, b, +(b.dataset.at || 0)); });
+    dlg.classList.toggle("case-series", !!(w.series || w.deck));
     if (!dlg.open) dlg.showModal();
     dlg.scrollTop = 0;
     // Старый адрес серии — сразу открываем её просмотр поверх кейса
@@ -286,6 +334,7 @@
     const s = svWork.series[svSet];
     const several = svWork.series.length > 1;
     sv.style.setProperty("--series-bg", s.bg || "var(--card)");
+    sv.classList.toggle("sv-wide", !!s.wide);
     $(".sv-back-text", sv).textContent = several ? "Все серии" : "Все слайды";
     $(".sv-tabs", sv).hidden = !several;
     $(".sv-tabs", sv).innerHTML = svWork.series.map((x, i) =>
