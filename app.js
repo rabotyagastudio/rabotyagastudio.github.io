@@ -90,15 +90,51 @@
   const dlg = $("#case");
   const body = $(".case-body", dlg);
 
+  const ICON_UR = `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>`;
+  const slidesWord = n => {
+    const d = n % 10, h = n % 100;
+    if (d === 1 && h !== 11) return `${n} слайд`;
+    if (d >= 2 && d <= 4 && (h < 12 || h > 14)) return `${n} слайда`;
+    return `${n} слайдов`;
+  };
+
+  // Кейс из нескольких серий: обложки серий, по клику — просмотр с переключением серий
+  const seriesCase = w => `
+    <section class="cs" aria-label="${w.title}">
+      <div class="cs-intro">
+        <h2>${w.headline || w.title}</h2>
+        <div class="cs-intro-note">
+          ${w.lead ? `<p>${w.lead}</p>` : ""}
+          <a class="btn" href="${tgUrl}" target="_blank" rel="noopener">${w.cta || "Обсудить задачу"} ${ICON_UR}</a>
+        </div>
+      </div>
+      <div class="cs-projects">
+        ${w.series.map((s, i) => `
+          <article style="--series-bg: ${s.bg || "var(--card)"}">
+            <button class="cs-cover" data-series="${i}" aria-label="Смотреть серию «${s.name}», ${slidesWord(s.slides.length)}">
+              <img src="${s.slides[0].src}" alt="">
+              <span class="cs-hint" aria-hidden="true">Листать серию ${ICON_UR}</span>
+            </button>
+            <div class="cs-meta">
+              <p class="cs-eyebrow">${s.category}</p>
+              <h3>${s.name}</h3>
+              <p>${s.note}</p>
+              <button class="cs-link" data-series="${i}">Смотреть ${slidesWord(s.slides.length)} ${ICON_UR}</button>
+            </div>
+          </article>`).join("")}
+      </div>
+      ${w.outro ? `<p class="cs-outro">${w.outro}</p>` : ""}
+    </section>`;
+
   function openCase(w) {
     const i = W.indexOf(w);
     const next = W[(i + 1) % W.length];
     body.innerHTML = `
       <p class="case-kicker">
-        <span>${service(w.service).title}${w.year ? ` · ${w.year}` : ""}</span>
+        <span>${w.kicker || `${service(w.service).title}${w.year ? ` · ${w.year}` : ""}`}</span>
         ${w.concept && w.badge !== false ? `<span class="badge badge-line">Концепт</span>` : ""}
       </p>
-      <h2>${w.title}</h2>
+      ${w.series ? "" : `<h2>${w.title}</h2>`}
       ${w.url ? `<a class="btn btn-sm btn-ghost case-url" href="${w.url}" target="_blank" rel="noopener">Открыть сайт ↗</a>` : ""}
       ${w.before && w.after ? `
         <div class="compare">
@@ -111,53 +147,7 @@
             <span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 3 12l6 6M15 6l6 6-6 6"/></svg></span>
           </div>
         </div>` : ""}
-      ${w.caseShowcase ? `
-        <section class="carousel-showcase" aria-label="Карусели для экспертов">
-          <div class="carousel-thesis">
-            <div class="carousel-thesis-copy">
-              <p class="carousel-overline">${w.caseShowcase.eyebrow}</p>
-              <h3>${w.caseShowcase.headline}</h3>
-              <p class="carousel-intro">${w.caseShowcase.intro}</p>
-              <div class="carousel-counts" aria-label="Три серии, двадцать один слайд">
-                <span><b>03</b> серии</span><i></i><span><b>21</b> слайд</span><i></i><span>3 голоса</span>
-              </div>
-            </div>
-            <div class="expert-triptych">
-              ${w.caseShowcase.experts.map((expert, i) => `
-                <article class="expert-card expert-card-${i + 1}">
-                  <div class="expert-card-image"><img src="${expert.src}" alt="${expert.alt}" loading="lazy"></div>
-                  <div class="expert-card-copy">
-                    <p>${expert.role}</p><h4>${expert.name}</h4><span>${expert.note}</span>
-                  </div>
-                </article>`).join("")}
-            </div>
-          </div>
-
-          <section class="carousel-feature" aria-label="Семислайдовая серия Кубышка">
-            <div class="carousel-feature-top">
-              <span>ФИНАНСЫ · НЕРЕГУЛЯРНЫЙ ДОХОД</span><span>${w.caseShowcase.slideCount}</span>
-            </div>
-            <div class="carousel-feature-main">
-              <div class="carousel-feature-copy">
-                <p class="carousel-overline">НОВАЯ АРТ-ДИРЕКЦИЯ</p>
-                <h3>${w.caseShowcase.featuredTitle}</h3>
-                <p>${w.caseShowcase.featuredNote}</p>
-                <button class="carousel-start" data-shot="0">Начать с обложки <span aria-hidden="true">↗</span></button>
-              </div>
-              <button class="carousel-feature-cover" data-shot="0" aria-label="Открыть крупно: ${w.gallery[0].title}">
-                <img src="${w.gallery[0].src}" alt="${w.gallery[0].alt}" loading="lazy">
-              </button>
-            </div>
-            <div class="carousel-reel-head"><h4>${w.caseShowcase.slidesLabel}</h4><span>Нажми на слайд, чтобы листать крупно</span></div>
-            <div class="gallery gallery-carousel" aria-label="Все семь слайдов">
-              ${w.gallery.map((g, i) => `
-                <button class="gallery-item" data-shot="${i}" aria-label="Открыть крупно: ${g.title}">
-                  <img src="${g.src}" alt="${g.alt}" loading="lazy">
-                  <span class="gallery-cap">${g.title}</span>
-                </button>`).join("")}
-            </div>
-          </section>
-        </section>` : `
+      ${w.series ? seriesCase(w) : `
         <div class="case-text">
           ${w.task ? `<div><h3>Задача</h3><p>${w.task}</p></div>` : ""}
           ${w.solution ? `<div><h3>Решение</h3><p>${w.solution}</p></div>` : ""}
@@ -182,6 +172,8 @@
     const cmp = $(".compare", body);
     if (cmp) bindCompare(cmp);
     $$("[data-shot]", body).forEach(b => { b.onclick = () => openShot(w.gallery, +b.dataset.shot); });
+    $$("[data-series]", body).forEach(b => { b.onclick = () => openSeries(w, +b.dataset.series, b); });
+    dlg.classList.toggle("case-series", !!w.series);
     if (!dlg.open) dlg.showModal();
     dlg.scrollTop = 0;
   }
@@ -252,6 +244,94 @@
     if (Math.abs(dx) > 50) showShot(shot + (dx < 0 ? 1 : -1));
   });
 
+  // Просмотр серий: вкладки серий, стрелки, миниатюры, клавиши ← →, свайп.
+  // Esc, «Все серии» и ✕ возвращают к кейсу, фокус — на кнопку, с которой открыли
+  const sv = $("#series");
+  const svStage = $(".sv-stage", sv);
+  const svImg = $("img", svStage);
+  const svPrev = $(".sv-prev", sv);
+  const svNext = $(".sv-next", sv);
+  let svWork = null;
+  let svSet = 0;
+  let svAt = 0;
+  let svFrom = null;
+
+  function renderSeries(focusTab) {
+    const s = svWork.series[svSet];
+    sv.style.setProperty("--series-bg", s.bg || "var(--card)");
+    $(".sv-tabs", sv).innerHTML = svWork.series.map((x, i) =>
+      `<button data-sv-set="${i}"${i === svSet ? ` aria-current="true"` : ""}>${x.name}</button>`).join("");
+    $(".sv-eyebrow", sv).textContent = `${s.category} · ${slidesWord(s.slides.length)}`;
+    $(".sv-name", sv).textContent = s.name;
+    $(".sv-intro", sv).textContent = s.intro || "";
+    $(".sv-strip", sv).innerHTML = s.slides.map((g, i) => `
+      <button data-sv-at="${i}" aria-label="Слайд ${i + 1}: ${g.title}">
+        <img src="${g.src}" alt="" loading="lazy"><span>${String(i + 1).padStart(2, "0")}</span>
+      </button>`).join("");
+    const note = $(".sv-note", sv);
+    note.textContent = s.disclaimer || "";
+    note.hidden = !s.disclaimer;
+    $$("[data-sv-set]", sv).forEach(b => { b.onclick = () => { svSet = +b.dataset.svSet; renderSeries(true); }; });
+    $$("[data-sv-at]", sv).forEach(b => { b.onclick = () => showSlide(+b.dataset.svAt); });
+    showSlide(0);
+    if (focusTab) $(`[data-sv-set="${svSet}"]`, sv).focus();
+  }
+
+  function showSlide(i) {
+    const slides = svWork.series[svSet].slides;
+    svAt = Math.max(0, Math.min(slides.length - 1, i));
+    const g = slides[svAt];
+    svImg.src = g.src;
+    svImg.alt = g.alt;
+    $(".sv-cap", sv).textContent = g.title;
+    $(".sv-count", sv).textContent = `${svAt + 1} / ${slides.length}`;
+    svPrev.disabled = svAt === 0;
+    svNext.disabled = svAt === slides.length - 1;
+    // Стрелка стала неактивной — переводим фокус на соседнюю, чтобы клавиатура не терялась
+    if (document.activeElement === svPrev && svPrev.disabled) svNext.focus();
+    if (document.activeElement === svNext && svNext.disabled) svPrev.focus();
+    $$("[data-sv-at]", sv).forEach(b => {
+      if (+b.dataset.svAt === svAt) b.setAttribute("aria-current", "true");
+      else b.removeAttribute("aria-current");
+    });
+    [svAt - 1, svAt + 1].forEach(j => { if (slides[j]) new Image().src = slides[j].src; });
+  }
+
+  function openSeries(w, i, from) {
+    svWork = w;
+    svSet = i;
+    svFrom = from;
+    renderSeries();
+    if (!sv.open) sv.showModal();
+  }
+
+  svPrev.onclick = () => showSlide(svAt - 1);
+  svNext.onclick = () => showSlide(svAt + 1);
+  $$("[data-sv-close]", sv).forEach(b => { b.onclick = () => sv.close(); });
+  sv.addEventListener("close", () => { svFrom?.focus(); });
+  sv.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") showSlide(svAt - 1);
+    else if (e.key === "ArrowRight") showSlide(svAt + 1);
+    else return;
+    e.preventDefault();
+  });
+
+  let svX = null;
+  let svY = null;
+  svStage.addEventListener("pointerdown", e => {
+    if (e.target.closest("button")) return;
+    svX = e.clientX;
+    svY = e.clientY;
+  });
+  svStage.addEventListener("pointercancel", () => { svX = null; });
+  svStage.addEventListener("pointerup", e => {
+    if (svX === null) return;
+    const dx = e.clientX - svX;
+    const dy = e.clientY - svY;
+    svX = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) showSlide(svAt + (dx < 0 ? 1 : -1));
+  });
+
   function route() {
     const w = bySlug(decodeURIComponent(location.hash.slice(1)));
     if (w) openCase(w);
@@ -260,6 +340,7 @@
 
   dlg.addEventListener("close", () => {
     if (viewer.open) viewer.close();
+    if (sv.open) sv.close();
     $$("video", body).forEach(v => v.pause());
     if (bySlug(decodeURIComponent(location.hash.slice(1)))) {
       history.replaceState(null, "", location.pathname + location.search);
