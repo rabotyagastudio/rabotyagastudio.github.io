@@ -113,19 +113,23 @@ window.WORKS = [
   },
   {
     slug: "carousels",
+    // Старая ссылка отдельного кейса «Сытно» открывает этот кейс сразу на серии «Сытно»
+    aliases: { "sytno-carousel": "sytno" },
     title: "Карусели для экспертов",
     service: "carousels",
     concept: true,
     badge: false,
     year: 2026,
-    cover: "works/carousels/cover-kubyshka.jpg",
-    // Кейс из нескольких серий: вместо задачи/решения — обложки серий и просмотр с переключением.
+    cover: "works/carousels/cover-all.jpg",
+    // Кейс из нескольких серий: сверху обложки серий, ниже каждая серия целиком сеткой с палитрой и шрифтами.
+    // По клику на обложку или слайд — просмотр с вкладками серий.
     // kicker — строка над заголовком; headline и lead можно с <br>; disclaimer — сноска под серией в просмотре;
-    // thumb — лёгкая миниатюра для ленты под слайдом (160 px по ширине), без неё лента грузит сам слайд
+    // thumb — лёгкая миниатюра для ленты под слайдом и для сетки (у SVG сетка берёт сам слайд)
     kicker: "Карусели · Работяга Studio",
     headline: "Карусели<br>для экспертов",
     lead: "Сложная тема — понятная серия.<br> Дизайн, который помогает читать дальше.",
     cta: "Обсудить карусель",
+    allTitle: "Все слайды",
     outro: "Три темы. Три визуальных подхода.",
     series: [
       {
@@ -135,76 +139,6 @@ window.WORKS = [
         note: "Утро на свой вкус",
         intro: "Пять простых завтраков: блюда сверху, тёплый свет и крупная антиква. Круглое кадрирование рифмуется с посудой, рецепты набраны спокойным гротеском.",
         bg: "#9F2C21",
-        // Те же слайды, что в отдельном кейсе «Карусель для нутрициолога «Сытно»»
-        slides: [
-          { src: "works/sytno-carousel/01-cover.jpg", thumb: "works/sytno-carousel/thumbs/01-cover.jpg", title: "Обложка", alt: "Обложка карусели «Сытно»: утро на свой вкус, 5 простых завтраков, тост с авокадо и яйцом на тарелке" },
-          { src: "works/sytno-carousel/02-omelette.jpg", thumb: "works/sytno-carousel/thumbs/02-omelette.jpg", title: "Омлет с овощами", alt: "Завтрак 01 — омлет с овощами: яйца, томаты, шпинат; сначала слегка обжарить овощи, потом залить яйцами" },
-          { src: "works/sytno-carousel/03-oats.jpg", thumb: "works/sytno-carousel/thumbs/03-oats.jpg", title: "Овсянка с ягодами", alt: "Завтрак 02 — овсянка с ягодами и грецкими орехами: ягоды добавить в конце" },
-          { src: "works/sytno-carousel/04-toast.jpg", thumb: "works/sytno-carousel/thumbs/04-toast.jpg", title: "Тост с авокадо и яйцом", alt: "Завтрак 03 — тост с авокадо и варёным яйцом: яйцо можно сварить с вечера" },
-          { src: "works/sytno-carousel/05-curd.jpg", thumb: "works/sytno-carousel/thumbs/05-curd.jpg", title: "Творог с грушей", alt: "Завтрак 04 — творог с грушей, йогуртом и корицей, без плиты" },
-          { src: "works/sytno-carousel/06-buckwheat.jpg", thumb: "works/sytno-carousel/thumbs/06-buckwheat.jpg", title: "Гречка с яйцом", alt: "Завтрак 05 — гречка с глазуньей, огурцом и укропом из готовой крупы" },
-          { src: "works/sytno-carousel/07-save.jpg", thumb: "works/sytno-carousel/thumbs/07-save.jpg", title: "Сохраните подборку", alt: "Финальный слайд «Сытно»: пять идей — одна подборка, сохраните подборку" }
-        ]
-      },
-      {
-        id: "kubyshka",
-        name: "Кубышка",
-        category: "Финансы",
-        note: "Резерв при нерегулярном доходе",
-        intro: "Как объяснить резерв при неровном доходе: конкретные примеры, простые пропорции и синий акцент на накоплениях.",
-        bg: "#F0EEE7",
-        disclaimer: "Расчёты иллюстрируют сценарий и не обещают конкретный финансовый результат.",
-        slides: [
-          { src: "works/carousels/kubyshka/01-cover.svg", thumb: "works/carousels/kubyshka/thumbs/01-cover.jpg", title: "Доход скачет. Запас растёт.", alt: "Типографическая обложка карусели «Кубышка» о финансовом резерве при неровном доходе" },
-          { src: "works/carousels/kubyshka/02-percent-examples.svg", thumb: "works/carousels/kubyshka/thumbs/02-percent-examples.jpg", title: "Процент один. Суммы разные.", alt: "Три условных примера: от разных поступлений в резерв уходит десять процентов" },
-          { src: "works/carousels/kubyshka/03-allocation.svg", thumb: "works/carousels/kubyshka/thumbs/03-allocation.jpg", title: "Раздели поступление.", alt: "Пропорция распределения поступления: девяносто процентов и десять процентов в резерв" },
-          { src: "works/carousels/kubyshka/04-first-milestone.svg", thumb: "works/carousels/kubyshka/thumbs/04-first-milestone.jpg", title: "Первый рубеж.", alt: "Условная цель накоплений: 180 тысяч рублей на три месяца обязательных расходов по 60 тысяч" },
-          { src: "works/carousels/kubyshka/05-change-the-pace.svg", thumb: "works/carousels/kubyshka/thumbs/05-change-the-pace.jpg", title: "Темп можно менять.", alt: "Как менять темп накоплений при разном доходе без давления на себя" },
-          { src: "works/carousels/kubyshka/06-annual-calculation.svg", thumb: "works/carousels/kubyshka/thumbs/06-annual-calculation.jpg", title: "Расчёт за год.", alt: "Расчёт: средний доход 150 тысяч рублей в месяц, десять процентов, двенадцать месяцев — 180 тысяч рублей" },
-          { src: "works/carousels/kubyshka/07-save-the-plan.svg", thumb: "works/carousels/kubyshka/thumbs/07-save-the-plan.jpg", title: "Сохрани схему.", alt: "Заключительный слайд карусели «Кубышка» с призывом сохранить схему" }
-        ]
-      },
-      {
-        id: "bukva",
-        name: "Буква",
-        category: "Юрист",
-        note: "Условия договора понятным языком",
-        intro: "Серия строится на сравнении: расплывчатый пункт договора и конкретная формулировка. Типографика напоминает сам документ.",
-        bg: "#F2EFE8",
-        slides: [
-          { src: "works/carousels/bukva/1.png", thumb: "works/carousels/bukva/thumbs/1.jpg", title: "Договор с подрядчиком", alt: "Обложка карусели «Буква»: договор с подрядчиком, 5 пунктов, которые сберегут деньги" },
-          { src: "works/carousels/bukva/2.png", thumb: "works/carousels/bukva/thumbs/2.jpg", title: "Предмет", alt: "§ 1 Предмет: как пишут «разработка сайта», как надо «сайт из 5 страниц по ТЗ из приложения 1»" },
-          { src: "works/carousels/bukva/3.png", thumb: "works/carousels/bukva/thumbs/3.jpg", title: "Сроки", alt: "§ 2 Сроки: как пишут «в разумный срок», как надо «до 15 марта 2026 года»" },
-          { src: "works/carousels/bukva/4.png", thumb: "works/carousels/bukva/thumbs/4.jpg", title: "Оплата", alt: "§ 3 Оплата: как пишут «оплата по договорённости», как надо «аванс 30%, остальное — после акта»" },
-          { src: "works/carousels/bukva/5.png", thumb: "works/carousels/bukva/thumbs/5.jpg", title: "Приёмка", alt: "§ 4 Приёмка: как пишут «работа считается принятой», как надо «5 рабочих дней на замечания»" },
-          { src: "works/carousels/bukva/6.png", thumb: "works/carousels/bukva/thumbs/6.jpg", title: "Неустойка", alt: "§ 5 Неустойка: как пишут «стороны несут ответственность», как надо «0,1% за каждый день просрочки»" },
-          { src: "works/carousels/bukva/7.png", thumb: "works/carousels/bukva/thumbs/7.jpg", title: "Проверка договора", alt: "Финальный слайд «Буква»: проверю ваш договор за один день, пришлите файл в директ" }
-        ]
-      }
-    ]
-  },
-  {
-    // Одна серия: все слайды сеткой, по клику — тот же просмотр, что у «Карусели для экспертов».
-    // spec — плитка с палитрой, шрифтами и форматом в последней ячейке сетки
-    slug: "sytno-carousel",
-    title: "Карусель для нутрициолога «Сытно»",
-    service: "carousels",
-    concept: true,
-    badge: false,
-    year: 2026,
-    cover: "works/sytno-carousel/cover.jpg",
-    kicker: "Карусели · Работяга Studio",
-    headline: "Утро<br>на свой вкус",
-    lead: "Карусель для нутрициолога «Сытно»: пять простых завтраков, которые хочется сохранить. Блюда сверху, тёплый свет и крупная антиква.",
-    cta: "Обсудить карусель",
-    series: [
-      {
-        id: "sytno-morning",
-        name: "Сытно.",
-        category: "Нутрициолог",
-        note: "Утро на свой вкус",
-        intro: "Маленькая гастрономическая редакция, которую удобно сохранить. Круглое кадрирование рифмуется с посудой, антиква задаёт тон, спокойный гротеск отвечает за рецепты.",
-        bg: "#F5EEDC",
         spec: {
           palette: [
             { name: "Томатный", hex: "#9F2C21" },
@@ -223,6 +157,61 @@ window.WORKS = [
           { src: "works/sytno-carousel/05-curd.jpg", thumb: "works/sytno-carousel/thumbs/05-curd.jpg", title: "Творог с грушей", alt: "Завтрак 04 — творог с грушей, йогуртом и корицей, без плиты" },
           { src: "works/sytno-carousel/06-buckwheat.jpg", thumb: "works/sytno-carousel/thumbs/06-buckwheat.jpg", title: "Гречка с яйцом", alt: "Завтрак 05 — гречка с глазуньей, огурцом и укропом из готовой крупы" },
           { src: "works/sytno-carousel/07-save.jpg", thumb: "works/sytno-carousel/thumbs/07-save.jpg", title: "Сохраните подборку", alt: "Финальный слайд «Сытно»: пять идей — одна подборка, сохраните подборку" }
+        ]
+      },
+      {
+        id: "kubyshka",
+        name: "Кубышка",
+        category: "Финансы",
+        note: "Резерв при нерегулярном доходе",
+        intro: "Как объяснить резерв при неровном доходе: конкретные примеры, простые пропорции и синий акцент на накоплениях.",
+        bg: "#F0EEE7",
+        disclaimer: "Расчёты иллюстрируют сценарий и не обещают конкретный финансовый результат.",
+        spec: {
+          palette: [
+            { name: "Бумага", hex: "#F0EEE7" },
+            { name: "Графит", hex: "#1B211E" },
+            { name: "Резерв", hex: "#2C4DFF" }
+          ],
+          fonts: "Manrope — заголовки и текст<br>моноширинные цифры в расчётах",
+          format: "7 слайдов · 1080&nbsp;×&nbsp;1350"
+        },
+        slides: [
+          { src: "works/carousels/kubyshka/01-cover.svg", thumb: "works/carousels/kubyshka/thumbs/01-cover.jpg", title: "Доход скачет. Запас растёт.", alt: "Типографическая обложка карусели «Кубышка» о финансовом резерве при неровном доходе" },
+          { src: "works/carousels/kubyshka/02-percent-examples.svg", thumb: "works/carousels/kubyshka/thumbs/02-percent-examples.jpg", title: "Процент один. Суммы разные.", alt: "Три условных примера: от разных поступлений в резерв уходит десять процентов" },
+          { src: "works/carousels/kubyshka/03-allocation.svg", thumb: "works/carousels/kubyshka/thumbs/03-allocation.jpg", title: "Раздели поступление.", alt: "Пропорция распределения поступления: девяносто процентов и десять процентов в резерв" },
+          { src: "works/carousels/kubyshka/04-first-milestone.svg", thumb: "works/carousels/kubyshka/thumbs/04-first-milestone.jpg", title: "Первый рубеж.", alt: "Условная цель накоплений: 180 тысяч рублей на три месяца обязательных расходов по 60 тысяч" },
+          { src: "works/carousels/kubyshka/05-change-the-pace.svg", thumb: "works/carousels/kubyshka/thumbs/05-change-the-pace.jpg", title: "Темп можно менять.", alt: "Как менять темп накоплений при разном доходе без давления на себя" },
+          { src: "works/carousels/kubyshka/06-annual-calculation.svg", thumb: "works/carousels/kubyshka/thumbs/06-annual-calculation.jpg", title: "Расчёт за год.", alt: "Расчёт: средний доход 150 тысяч рублей в месяц, десять процентов, двенадцать месяцев — 180 тысяч рублей" },
+          { src: "works/carousels/kubyshka/07-save-the-plan.svg", thumb: "works/carousels/kubyshka/thumbs/07-save-the-plan.jpg", title: "Сохрани схему.", alt: "Заключительный слайд карусели «Кубышка» с призывом сохранить схему" }
+        ]
+      },
+      {
+        id: "bukva",
+        name: "Буква",
+        category: "Юрист",
+        note: "Договор с подрядчиком: 5 пунктов",
+        intro: "Каждый слайд — страница договора: расплывчатый пункт зачёркнут красной ручкой, точная формулировка выделена маркером, на полях пометки юриста. Под листом — пример в цифрах.",
+        bg: "#F2EFE8",
+        disclaimer: "Формулировки показывают подход и не заменяют консультацию по конкретному договору.",
+        spec: {
+          palette: [
+            { name: "Бумага", hex: "#F2EFE8" },
+            { name: "Чернила", hex: "#1B1A17" },
+            { name: "Красная ручка", hex: "#D7263D" },
+            { name: "Маркер", hex: "#F4D0D1" }
+          ],
+          fonts: "Literata — заголовки и пункты<br>IBM Plex Sans — подписи<br>Caveat — пометки на полях",
+          format: "7 слайдов · 1080&nbsp;×&nbsp;1440"
+        },
+        slides: [
+          { src: "works/carousels/bukva/01.jpg", thumb: "works/carousels/bukva/thumbs/01.jpg", title: "Договор с подрядчиком", alt: "Обложка карусели «Буква»: договор с подрядчиком, 5 пунктов, которые сберегут деньги; лист договора с оглавлением и печатью «Проверено»" },
+          { src: "works/carousels/bukva/02.jpg", thumb: "works/carousels/bukva/thumbs/02.jpg", title: "§ 1 Предмет", alt: "§ 1 Предмет: вместо «разработка сайта» — «сайт из 5 страниц по техническому заданию, Приложение 1»; пять страниц из задания" },
+          { src: "works/carousels/bukva/03.jpg", thumb: "works/carousels/bukva/thumbs/03.jpg", title: "§ 2 Сроки", alt: "§ 2 Сроки: вместо «в разумный срок» — «до 15 марта 2027 года включительно»; календарь с днём сдачи и днями просрочки" },
+          { src: "works/carousels/bukva/04.jpg", thumb: "works/carousels/bukva/thumbs/04.jpg", title: "§ 3 Оплата", alt: "§ 3 Оплата: вместо «по договорённости» — аванс 30% после подписания и 70% после акта; шкала цены договора" },
+          { src: "works/carousels/bukva/05.jpg", thumb: "works/carousels/bukva/thumbs/05.jpg", title: "§ 4 Приёмка", alt: "§ 4 Приёмка: вместо «принята после передачи» — 5 рабочих дней на проверку и замечания письменно" },
+          { src: "works/carousels/bukva/06.jpg", thumb: "works/carousels/bukva/thumbs/06.jpg", title: "§ 5 Неустойка", alt: "§ 5 Неустойка: 0,1% от цены договора за каждый день, не более 10%; пример: 300 000 ₽ × 0,1% × 20 дней = 6 000 ₽" },
+          { src: "works/carousels/bukva/07.jpg", thumb: "works/carousels/bukva/thumbs/07.jpg", title: "Проверка договора", alt: "Финальный слайд «Буква»: проверю ваш договор за один день, пять пунктов с галочками, пришлите договор в директ" }
         ]
       }
     ]

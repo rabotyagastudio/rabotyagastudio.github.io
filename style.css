@@ -348,13 +348,24 @@ h1, h2, h3 {
 }
 .cs-link:hover { color: var(--accent); }
 .cs-outro { margin-top: 32px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 17px; }
-/* Одна серия: слайды сеткой, последняя ячейка — палитра и шрифты */
+/* Под обложками — каждая серия целиком */
+.cs-all-title { margin-top: clamp(56px, 8cqi, 96px); padding-top: 16px; border-top: 1px solid var(--line); font-size: clamp(26px, 3.6cqi, 44px); font-weight: 800; line-height: 1.1; letter-spacing: -.05em; }
+.cs-set { margin-top: clamp(32px, 4.5cqi, 52px); scroll-margin-top: 100px; }
+.cs-set + .cs-set { margin-top: clamp(56px, 7cqi, 88px); }
+.cs-set-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 4px 48px; align-items: end; margin-bottom: clamp(18px, 2.4cqi, 28px); }
+.case-body .cs-set-head h3 { grid-column: 1; font-size: clamp(28px, 4cqi, 48px); font-weight: 800; line-height: 1.1; letter-spacing: -.05em; }
+.cs-set-head p:not(.cs-eyebrow) { grid-column: 2; grid-row: 1 / span 2; max-width: 52ch; color: #5C5A56; font-size: 17px; line-height: 1.5; letter-spacing: -.01em; }
+@container (max-width: 640px) {
+  .cs-set-head { display: block; }
+  .cs-set-head p:not(.cs-eyebrow) { margin-top: 10px; font-size: 16px; }
+}
+/* Серия сеткой: слайды, последняя ячейка — палитра и шрифты */
 .cs-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 2.6cqi, 32px) clamp(12px, 1.8cqi, 20px); }
 .cs-slide { display: block; min-width: 0; padding: 0; border: 0; background: none; color: var(--ink); text-align: left; cursor: zoom-in; }
 .cs-slide img {
   width: 100%;
   aspect-ratio: 3 / 4;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 3px;
   background: var(--series-bg, var(--card));
   transition: transform .4s cubic-bezier(.2, .7, .2, 1), box-shadow .4s;

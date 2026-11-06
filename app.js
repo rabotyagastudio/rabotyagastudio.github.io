@@ -5,7 +5,8 @@
   const $$ = (sel, el = document) => [...el.querySelectorAll(sel)];
   const tgUrl = `https://t.me/${S.telegram}`;
   const service = id => S.services.find(s => s.id === id) || { short: id, title: id };
-  const bySlug = slug => W.find(w => w.slug === slug);
+  // aliases — старые адреса кейса: { "старый-slug": "id серии, на которой открыть" }
+  const bySlug = slug => W.find(w => w.slug === slug || (w.aliases && slug in w.aliases));
 
   // Тексты и ссылки из data.js
   document.documentElement.style.setProperty("--accent", S.accent);
@@ -123,16 +124,27 @@
               <button class="cs-link" data-series="${i}">Смотреть ${slidesWord(s.slides.length)} ${ICON_UR}</button>
             </div>
           </article>`).join("")}
-      </div>`}
+      </div>
+      ${w.allTitle ? `<h3 class="cs-all-title">${w.allTitle}</h3>` : ""}
+      ${w.series.map((s, i) => `
+        <section class="cs-set" id="set-${s.id}" aria-label="Серия «${s.name}»">
+          <div class="cs-set-head">
+            <p class="cs-eyebrow">${s.category} · ${slidesWord(s.slides.length)}</p>
+            <h3>${s.name}</h3>
+            ${s.intro ? `<p>${s.intro}</p>` : ""}
+          </div>
+          ${seriesGrid(s, i)}
+        </section>`).join("")}`}
       ${w.outro ? `<p class="cs-outro">${w.outro}</p>` : ""}
     </section>`;
 
-  // Одна серия: все слайды сеткой, последняя ячейка — палитра, шрифты и формат
-  const seriesGrid = s => `
+  // Серия сеткой, последняя ячейка — палитра, шрифты и формат. В сетке — лёгкая миниатюра, у SVG — сам слайд
+  const gridSrc = g => (/\.svg$/.test(g.src) ? g.src : g.thumb || g.src);
+  const seriesGrid = (s, si = 0) => `
     <div class="cs-grid" style="--series-bg: ${s.bg || "var(--card)"}">
       ${s.slides.map((g, i) => `
-        <button class="cs-slide" data-series="0" data-at="${i}" aria-label="Открыть крупно: ${g.title}">
-          <img src="${g.thumb || g.src}" alt="">
+        <button class="cs-slide" data-series="${si}" data-at="${i}" aria-label="Открыть крупно: ${g.title}">
+          <img src="${gridSrc(g)}" alt="" loading="lazy">
           <span><b>${String(i + 1).padStart(2, "0")}</b>${g.title}</span>
         </button>`).join("")}
       ${s.spec ? `
@@ -147,7 +159,7 @@
         </div>` : ""}
     </div>`;
 
-  function openCase(w) {
+  function openCase(w, setId) {
     const i = W.indexOf(w);
     const next = W[(i + 1) % W.length];
     body.innerHTML = `
@@ -197,6 +209,8 @@
     dlg.classList.toggle("case-series", !!w.series);
     if (!dlg.open) dlg.showModal();
     dlg.scrollTop = 0;
+    const set = setId && $(`#set-${setId}`, body);
+    if (set) requestAnimationFrame(() => set.scrollIntoView({ block: "start" }));
   }
 
   function bindCompare(el) {
@@ -360,8 +374,9 @@
   });
 
   function route() {
-    const w = bySlug(decodeURIComponent(location.hash.slice(1)));
-    if (w) openCase(w);
+    const slug = decodeURIComponent(location.hash.slice(1));
+    const w = bySlug(slug);
+    if (w) openCase(w, w.aliases?.[slug]);
     else if (dlg.open) dlg.close();
   }
 
