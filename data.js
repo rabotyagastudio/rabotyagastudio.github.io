@@ -254,6 +254,20 @@ window.WORKS = [
     ],
   },
   {
+    slug: "speaker-video",
+    aliases: { "director-video": null },
+    title: "Видеообращение бизнес-консультанта",
+    service: "motion",
+    year: 2026,
+    cover: "works/speaker-video/cover.jpg",
+    task: "Прислали видеообращение спикера, но запись вышла неудачной: картинка не годится, а переснимать некогда. Ролик для соцсетей нужен сразу.",
+    solution: "Вытащил из записи голос, а из фотографии спикера сделал говорящее видео под этот голос. Смонтировал вертикальный ролик: титры по словам с золотыми акцентами и плашки с ключевыми фактами — опыт, компании, карьерный путь. На всё ушло 10 минут.",
+    images: [
+      { video: "works/speaker-video/video.mp4", poster: "works/speaker-video/poster.jpg", vertical: true, sound: true },
+      "works/speaker-video/01-process.jpg",
+    ],
+  },
+  {
     slug: "yulia-sokolova",
     title: "Сайт для эксперта по метафизике бизнеса",
     service: "web",
@@ -307,19 +321,6 @@ window.WORKS = [
       "works/director-deck/08.jpg",
       "works/director-deck/09.jpg",
       "works/director-deck/10.jpg",
-    ],
-  },
-  {
-    slug: "director-video",
-    title: "Видеообращение для конкурса «Директор года»",
-    service: "motion",
-    year: 2026,
-    cover: "works/director-video/cover.jpg",
-    task: "Прислали видеообращение соучредителя конкурса, но запись вышла неудачной: картинка не годится, а переснимать некогда. Ролик для соцсетей нужен сразу.",
-    solution: "Вытащил из записи голос, а из фотографии спикера сделал говорящее видео под этот голос. Смонтировал вертикальный ролик на полторы минуты: плашка с именем и титры по словам с золотыми акцентами в цветах конкурса. На всё ушло 10 минут.",
-    images: [
-      { video: "works/director-video/video.mp4", poster: "works/director-video/poster.jpg", vertical: true, sound: true },
-      "works/director-video/01-process.jpg",
     ],
   },
 ];
