@@ -187,7 +187,7 @@
 }
 @container (max-width: 640px) {
   .pk-hero { grid-template-columns: 1fr; align-items: end; min-height: 600px; padding: 22px 20px 74px; }
-  .pk-cup { left: 50%; right: auto; top: 30%; width: 74%; transform: translate(-50%, -50%); }
+  .pk-cup { left: 50%; right: auto; top: 34px; width: min(74%, 320px); transform: translateX(-50%); }
   .case-body .pk-word { font-size: clamp(84px, 27cqi, 130px); margin-bottom: 14px; }
   .pk-hero-lead { font-size: 16px; }
   .pk-hint { left: 20px; right: auto; bottom: 20px; }
