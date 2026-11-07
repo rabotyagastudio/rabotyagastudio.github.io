@@ -261,8 +261,11 @@
     return () => { observer.disconnect(); document.removeEventListener('visibilitychange', refresh); reduced.removeEventListener('change', refresh); videos.forEach(v => v.pause()); };
   }
 
+  let stopPenka = () => {};
   function openCase(w, setId) {
     stopShum();
+    stopPenka();
+    stopPenka = () => {};
     const i = W.indexOf(w);
     const next = W[(i + 1) % W.length];
     body.innerHTML = `
@@ -270,7 +273,7 @@
         <span>${w.kicker || `${service(w.service).title}${w.year ? ` · ${w.year}` : ""}`}</span>
         ${w.concept && w.badge !== false ? `<span class="badge badge-line">Концепт</span>` : ""}
       </p>
-      ${w.series || w.deck || w.motion ? "" : `<h2>${w.title}</h2>`}
+      ${w.series || w.deck || w.motion || w.penka ? "" : `<h2>${w.title}</h2>`}
       ${w.url ? `<a class="btn btn-sm btn-ghost case-url" href="${w.url}" target="_blank" rel="noopener">Открыть сайт ↗</a>` : ""}
       ${w.before && w.after ? `
         <div class="compare">
@@ -283,7 +286,7 @@
             <span class="compare-knob"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6 3 12l6 6M15 6l6 6-6 6"/></svg></span>
           </div>
         </div>` : ""}
-      ${w.motion ? motionCase(w) : w.series ? seriesCase(w) : w.deck ? deckCase(w) : `
+      ${w.penka && window.PENKA ? PENKA.html(w) : w.motion ? motionCase(w) : w.series ? seriesCase(w) : w.deck ? deckCase(w) : `
         <div class="case-text">
           ${w.task ? `<div><h3>Задача</h3><p>${w.task}</p></div>` : ""}
           ${w.solution ? `<div><h3>Решение</h3><p>${w.solution}</p></div>` : ""}
@@ -307,15 +310,18 @@
       </div>`;
     const cmp = $(".compare", body);
     if (cmp) bindCompare(cmp);
-    $$("[data-shot]", body).forEach(b => { b.onclick = () => openShot(w.gallery, +b.dataset.shot); });
+    const shotList = w.penka ? [...w.penka.photos, ...w.penka.book] : w.gallery;
+    $$("[data-shot]", body).forEach(b => { b.onclick = () => openShot(shotList, +b.dataset.shot); });
     // Слайды презентации листаются тем же просмотром, что и серии: одна широкая серия
     const sw = w.deck ? { series: [{ ...w.deck, wide: true }] } : w;
     $$("[data-series]", body).forEach(b => { b.onclick = () => openSeries(sw, +b.dataset.series, b, +(b.dataset.at || 0)); });
     dlg.classList.toggle("case-series", !!(w.series || w.deck));
     dlg.classList.toggle("case-shum", !!w.motion);
+    dlg.classList.toggle("case-penka", !!(w.penka && window.PENKA));
     if (!dlg.open) dlg.showModal();
     dlg.scrollTop = 0;
     if (w.motion) stopShum = bindShum();
+    if (w.penka && window.PENKA) stopPenka = PENKA.bind(body, dlg);
     // Старый адрес серии — сразу открываем её просмотр поверх кейса
     const si = setId ? w.series.findIndex(s => s.id === setId) : -1;
     if (si >= 0) openSeries(w, si, $(`.cs-cover[data-series="${si}"]`, body));
@@ -491,6 +497,8 @@
 
   dlg.addEventListener("close", () => {
     stopShum();
+    stopPenka();
+    stopPenka = () => {};
     if (viewer.open) viewer.close();
     if (sv.open) sv.close();
     $$("video", body).forEach(v => v.pause());
