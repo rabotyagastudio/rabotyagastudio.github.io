@@ -285,7 +285,7 @@ window.WORKS = [
       phone: { video: "works/shum-motion/phone.mp4?v=8", poster: "works/shum-motion/phone-poster.jpg?v=8", w: 1080, h: 1446, title: "Рилс «Шума» в телефоне у гостя фестиваля" },
       city: { video: "works/shum-motion/busstop.mp4?v=8", poster: "works/shum-motion/busstop-poster.jpg?v=8", w: 1920, h: 1072, title: "Город на одной частоте.", description: "Цифровой лайтбокс на&nbsp;остановке играет живым шрифтом, а&nbsp;расклейка держит тот&nbsp;же ритм на&nbsp;бетоне.", caption: "Остановка ночью · петля 8 секунд" },
       wall: { src: "works/shum-motion/wall.jpg?v=9", alt: "Шесть афиш «Шума» расклеены на бетонной стене: даты, участники и слоган", caption: "Расклейка в промзоне · три афиши серии" },
-      merch: { src: "works/shum-motion/merch.jpg?v=8", title: "В руках у гостей.", description: "Билет, бейдж, браслет и&nbsp;футболка собраны из&nbsp;того&nbsp;же знака и&nbsp;той&nbsp;же палитры.", alt: "Билет, бейдж участника, браслет и футболка с знаком «Шум» на тёмном бетоне", caption: "Билет, бейдж, браслет, футболка" }
+      merch: { src: "works/shum-motion/merch.jpg?v=10", title: "В руках у гостей.", description: "Билет, бейдж, браслет и&nbsp;футболка собраны из&nbsp;того&nbsp;же знака и&nbsp;той&nbsp;же палитры.", alt: "Билет, бейдж участника, браслет и футболка с знаком «Шум» на тёмном бетоне", caption: "Билет, бейдж, браслет, футболка" }
     },
     gallery: [
       { src: "works/shum-motion/01-system.jpg?v=8", title: "Один знак — четыре режима", alt: "Знак «Шум» в четырёх режимах: хром, свет внутри, живой шрифт и изгиб. Ширина букв, ритм, шрифты и палитра" },
