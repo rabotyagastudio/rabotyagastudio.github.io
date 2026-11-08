@@ -24,6 +24,8 @@ img, video { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+/* Окна получают фокус сами, а не первая кнопка: после клика мышью и стрелок в просмотрщике не горит рамка на «Закрыть». Tab ведёт к кнопкам как обычно. */
+dialog:focus, dialog:focus-visible { outline: none; }
 h1, h2, h3 {
   font-family: var(--display);
   font-weight: 700;

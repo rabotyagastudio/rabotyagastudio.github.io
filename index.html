@@ -71,7 +71,7 @@
     <span id="year"></span>
   </footer>
 
-  <dialog class="case" id="case">
+  <dialog class="case" id="case" tabindex="-1">
     <div class="case-bar">
       <button class="btn btn-sm btn-ghost" data-close>✕ Закрыть</button>
       <button class="btn btn-sm btn-ghost" data-copy>Скопировать ссылку</button>
@@ -79,7 +79,7 @@
     <div class="case-body"></div>
   </dialog>
 
-  <dialog class="viewer" id="viewer" aria-label="Просмотр крупно">
+  <dialog class="viewer" id="viewer" aria-label="Просмотр крупно" tabindex="-1">
     <div class="viewer-bar">
       <button class="btn btn-sm btn-ghost" data-back>← Назад ко всем</button>
       <p class="viewer-title"></p>
@@ -92,7 +92,7 @@
     </div>
   </dialog>
 
-  <dialog class="sv" id="series" aria-labelledby="sv-name">
+  <dialog class="sv" id="series" aria-labelledby="sv-name" tabindex="-1">
     <header class="sv-head">
       <button class="btn btn-sm sv-back" data-sv-close><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span class="sv-back-text">Все серии</span></button>
       <nav class="sv-tabs" aria-label="Выбрать серию"></nav>

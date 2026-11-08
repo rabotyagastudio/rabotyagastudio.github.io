@@ -318,7 +318,7 @@
     dlg.classList.toggle("case-series", !!(w.series || w.deck));
     dlg.classList.toggle("case-shum", !!w.motion);
     dlg.classList.toggle("case-penka", !!(w.penka && window.PENKA));
-    if (!dlg.open) dlg.showModal();
+    if (!dlg.open) { dlg.showModal(); dlg.focus({ preventScroll: true }); }
     dlg.scrollTop = 0;
     if (w.motion) stopShum = bindShum();
     if (w.penka && window.PENKA) stopPenka = PENKA.bind(body, dlg);
@@ -369,7 +369,7 @@
   function openShot(list, i) {
     shots = list;
     showShot(i);
-    if (!viewer.open) viewer.showModal();
+    if (!viewer.open) { viewer.showModal(); viewer.focus({ preventScroll: true }); }
   }
 
   $("[data-back]", viewer).onclick = () => viewer.close();
@@ -455,7 +455,7 @@
     svSet = i;
     svFrom = from;
     renderSeries(false, at);
-    if (!sv.open) sv.showModal();
+    if (!sv.open) { sv.showModal(); sv.focus({ preventScroll: true }); }
   }
 
   svPrev.onclick = () => showSlide(svAt - 1);
