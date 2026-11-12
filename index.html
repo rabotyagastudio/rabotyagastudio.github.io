@@ -16,8 +16,9 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23111110'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial' font-weight='900' font-size='38' text-anchor='middle' fill='%23F3F1EC'%3EР%3C/text%3E%3Ccircle cx='50' cy='14' r='6' fill='%23FF4D1A'/%3E%3C/svg%3E">
   <meta name="theme-color" content="#0C0C0B">
-  <!-- Первый кадр шоурила -->
-  <link rel="preload" as="image" href="works/shum-motion/stage-poster.jpg">
+  <!-- Первый кадр шоурила: на телефоне — узкий кроп, на остальных экранах — целиком -->
+  <link rel="preload" as="image" href="home/stage-m.jpg" media="(max-width: 760px) and (max-aspect-ratio: 3/4)">
+  <link rel="preload" as="image" href="works/shum-motion/stage-poster.jpg" media="not all and (max-width: 760px) and (max-aspect-ratio: 3/4)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Dela+Gothic+One&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -133,6 +134,6 @@
   <script src="data.js?v=2"></script>
   <script src="penka.js?v=2"></script>
   <script src="app.js?v=2"></script>
-  <script src="film.js?v=16"></script>
+  <script src="film.js?v=17"></script>
 </body>
 </html>

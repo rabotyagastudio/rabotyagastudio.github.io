@@ -7,7 +7,6 @@
   const mobile = matchMedia("(max-width: 760px)").matches;
   // телефон вертикально: шоурил берёт лёгкие кропы роликов из home/ (кадр тот же, что виден на экране)
   const narrow = matchMedia("(max-width: 760px) and (max-aspect-ratio: 3/4)");
-  const LITE = false; // кропы в home/ ещё не залиты на сайт: пока телефон берёт полные ролики
   const fine = matchMedia("(hover: hover) and (pointer: fine)");
   const $ = (s, r = document) => r.querySelector(s);
   const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
@@ -83,7 +82,7 @@
 
   // defer — адреса кладём в data-*, а грузим, только когда зритель начал листать (hydrate)
   function media(m, eager, defer) {
-    const useM = LITE && narrow.matches;
+    const useM = narrow.matches;
     const put = (node, attr, val) => { if (defer) node.dataset[attr] = val; else node[attr] = val; };
     if (m.video) {
       const v = document.createElement("video");
@@ -150,7 +149,7 @@
   document.addEventListener("visibilitychange", () => heroPause(!document.hidden && heroVisible() && !caseOpen()));
   // повернули телефон — меняем кроп на полный кадр и обратно
   narrow.addEventListener("change", () => shots.forEach((x) => {
-    if (!LITE || !x.s.mVideo) return;
+    if (!x.s.mVideo) return;
     const v = x.m, src = narrow.matches ? x.s.mVideo : x.s.video;
     if (v.getAttribute("src") === src) return;
     v.poster = narrow.matches ? x.s.mPoster : x.s.poster; v.src = src;
