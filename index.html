@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <!-- Эти теги читает Threads/Telegram для превью ссылки, JS тут не помогает — правим руками -->
   <title>Работяга Studio — дизайнер</title>
   <meta name="description" content="Дизайнер: айдентика, соцсети, карусели, презентации, моушен и сайты.">
@@ -15,61 +15,73 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23111110'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial' font-weight='900' font-size='38' text-anchor='middle' fill='%23F3F1EC'%3EР%3C/text%3E%3Ccircle cx='50' cy='14' r='6' fill='%23FF4D1A'/%3E%3C/svg%3E">
-  <meta name="theme-color" content="#F3F1EC">
+  <meta name="theme-color" content="#0C0C0B">
+  <!-- Первый кадр шоурила -->
+  <link rel="preload" as="image" href="works/shum-motion/stage-poster.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Manrope:wght@500;600;700;800&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="penka.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Dela+Gothic+One&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="film.css?v=16">
+  <link rel="stylesheet" href="case.css?v=1">
+  <link rel="stylesheet" href="penka.css?v=2">
 </head>
 <body>
-  <header class="top">
-    <a class="logo" href="#" data-site="name"></a>
-    <nav class="nav">
-      <a href="#works">Работы</a>
-      <a href="#services">Услуги</a>
+  <header class="hd">
+    <a class="hd-logo" href="#top" data-site="name">Работяга Studio</a>
+    <nav class="hd-nav">
+      <a href="#film">Избранное</a>
+      <a href="#index">Все работы</a>
       <a href="#contact">Контакт</a>
     </nav>
-    <a class="btn btn-sm" data-tg>Telegram</a>
+    <a class="hd-tg" data-tg>Telegram</a>
   </header>
 
   <main>
-    <section class="hero">
-      <p class="status"><span class="dot"></span><span data-site="status"></span></p>
-      <h1 data-site="headline"></h1>
-      <p class="lead" data-site="lead"></p>
-      <div class="hero-actions">
-        <a class="btn" data-tg>Написать в Telegram</a>
-        <a class="btn btn-ghost" href="#works">Смотреть работы</a>
-      </div>
-    </section>
+    <div class="stack">
+      <section class="hero layer" id="top" aria-label="Шоурил">
+        <div class="layer-in">
+          <div class="hero-media"></div>
+          <div class="hero-shade"></div>
+          <div class="hero-bottom">
+            <div>
+              <p class="status"><i></i><span data-site="status">Принимаю заказы</span></p>
+              <h1 data-site="headline">Дизайн, после которого бизнес выглядит дороже</h1>
+            </div>
+            <div class="hero-now">
+              <p class="hero-label">Сейчас в кадре</p>
+              <a class="hero-title" href="#"></a>
+              <div class="hero-bars"></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <div class="ticker" aria-hidden="true"><div class="ticker-track"></div></div>
+      <section class="stage" id="film" aria-label="Избранные работы">
+        <div class="stage-pin"><div class="stage-in"></div></div>
+      </section>
 
-    <section id="works" class="section">
-      <div class="section-head">
-        <h2>Работы</h2>
-        <div class="filters"></div>
-      </div>
-      <div class="grid"></div>
-    </section>
+      <section class="index" id="index">
+        <i class="anchor" id="works" aria-hidden="true"></i>
+        <div class="ix-head">
+          <h2>Все работы<sup class="ix-count"></sup></h2>
+          <div class="ix-filters" role="tablist" aria-label="Фильтр по услугам"></div>
+        </div>
+        <ol class="ix-list"></ol>
+      </section>
+    </div>
 
-    <section id="services" class="section">
-      <h2>Услуги</h2>
-      <ol class="services"></ol>
-    </section>
-
-    <section id="contact" class="contact">
-      <h2>Есть задача? Напишите.</h2>
-      <p>Расскажите, что нужно, — обсудим сроки и цену.</p>
-      <a class="btn btn-xl" data-tg></a>
+    <section class="contact" id="contact">
+      <i class="anchor" id="services" aria-hidden="true"></i>
+      <p class="ct-kicker">Что делаю</p>
+      <p class="ct-services">Логотипы и айдентика, соцсети, карусели для экспертов, презентации, полиграфия, моушен и сайты. Беру и точечные задачи, и упаковку бренда целиком.</p>
+      <h2>Есть задача?<br>Напишите.</h2>
+      <a class="ct-btn" data-tg></a>
     </section>
   </main>
 
-  <footer class="foot">
-    <span data-site="name"></span>
-    <span id="year"></span>
-  </footer>
+  <footer class="ft"><span data-site="name">Работяга Studio</span><span id="year">2026</span></footer>
+
+  <div class="peek" aria-hidden="true"><div class="peek-in"><img alt=""><img alt=""><video muted loop playsinline></video></div></div>
 
   <dialog class="case" id="case" tabindex="-1">
     <div class="case-bar">
@@ -118,8 +130,9 @@
     <p class="sv-note" hidden></p>
   </dialog>
 
-  <script src="data.js"></script>
-  <script src="penka.js"></script>
-  <script src="app.js"></script>
+  <script src="data.js?v=2"></script>
+  <script src="penka.js?v=2"></script>
+  <script src="app.js?v=2"></script>
+  <script src="film.js?v=16"></script>
 </body>
 </html>

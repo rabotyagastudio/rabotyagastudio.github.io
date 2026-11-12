@@ -18,75 +18,10 @@
     el.rel = "noopener";
     if (!el.textContent.trim()) el.textContent = `@${S.telegram} →`;
   });
-  $("#year").textContent = new Date().getFullYear();
+  const year = $("#year");
+  if (year) year.textContent = new Date().getFullYear();
 
-  // Бегущая строка: две одинаковые половины, чтобы цикл был бесшовным
-  const tickerItems = S.services.map(s => `<span>${s.title}</span>`).join("");
-  $(".ticker-track").innerHTML = tickerItems.repeat(4);
-
-  // Фильтры по услугам — только те, где есть работы
-  let current = "all";
-  const filters = $(".filters");
-  const used = S.services.filter(s => W.some(w => w.service === s.id));
-  [{ id: "all", short: "Все" }, ...used].forEach(s => {
-    const b = document.createElement("button");
-    b.className = "chip";
-    b.textContent = s.short;
-    b.dataset.id = s.id;
-    b.onclick = () => setFilter(s.id);
-    filters.append(b);
-  });
-  filters.hidden = used.length < 2;
-
-  function setFilter(id) {
-    current = id;
-    $$(".chip", filters).forEach(b => b.setAttribute("aria-pressed", b.dataset.id === id));
-    renderGrid();
-  }
-
-  function renderGrid() {
-    const grid = $(".grid");
-    const list = W.filter(w => current === "all" || w.service === current);
-    if (!list.length) {
-      grid.innerHTML = `<p class="empty">Скоро здесь появятся работы.</p>`;
-      return;
-    }
-    grid.innerHTML = list.map(w => `
-      <a class="card" href="#${w.slug}">
-        <div class="card-img"><img src="${w.cover}" alt="" loading="lazy"></div>
-        <div class="badges">
-          ${w.before && w.after ? `<span class="badge badge-accent">Было / стало</span>` : ""}
-          ${w.concept && w.badge !== false ? `<span class="badge">Концепт</span>` : ""}
-        </div>
-        <div class="card-meta">
-          <h3>${w.title}</h3>
-          <p>${service(w.service).short}${w.year ? ` · ${w.year}` : ""}</p>
-        </div>
-      </a>`).join("");
-  }
-
-  setFilter("all");
-
-  // Услуги
-  $(".services").innerHTML = S.services.map((s, i) => `
-    <li>
-      <span class="num">${String(i + 1).padStart(2, "0")}</span>
-      <div>
-        <h3>${s.title}</h3>
-        <p>${s.text}</p>
-      </div>
-      <div class="svc-side">
-        ${s.price ? `<span class="price">${s.price}</span>` : ""}
-        ${used.includes(s) ? `<button class="link" data-filter="${s.id}">Работы →</button>` : ""}
-      </div>
-    </li>`).join("");
-  $$("[data-filter]").forEach(b => {
-    b.onclick = () => {
-      setFilter(b.dataset.filter);
-      $("#works").scrollIntoView({ behavior: "smooth" });
-    };
-  });
-
+  // Главную (шоурил, фильм, список работ) рисует film.js, здесь — только окна кейсов.
   // Кейс в модалке, адрес #slug — чтобы давать ссылку на конкретную работу
   const dlg = $("#case");
   const body = $(".case-body", dlg);
