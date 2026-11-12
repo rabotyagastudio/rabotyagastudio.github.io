@@ -18,14 +18,15 @@
   const caseOpen = () => !!(caseDlg && caseDlg.open);
 
   // ---------- что показываем ----------
-  // Шоурил на первом экране: короткие планы из разных работ. mVideo/mPoster — кропы 3:4 для телефона (home/build.sh)
+  // Шоурил на первом экране — трейлер: детали работ, которых нет в фильме ниже. Если взять кадр из FILM,
+  // при прокрутке фильм въезжает тем же кадром поверх самого себя. mVideo/mPoster — кропы 3:4 для телефона (концепты/_home/build.sh)
   const SHOTS = [
-    { slug: "shum-motion", title: "«Шум» — моушен-айдентика фестиваля", video: "works/shum-motion/stage.mp4", poster: "works/shum-motion/stage-poster.jpg", mVideo: "home/stage-m.mp4", mPoster: "home/stage-m.jpg" },
-    { slug: "penka-identity", title: "«Пенка» — вывеска кофейни вечером", video: "works/penka-identity/motion/storefront.mp4", poster: "works/penka-identity/motion/storefront-on.jpg", mVideo: "home/storefront-m.mp4", mPoster: "home/storefront-m.jpg" },
-    { slug: "vnutri-social", title: "«Внутри» — соцсети психолога", img: "works/vnutri-social/cover.jpg?v=3" },
+    { slug: "penka-identity", title: "«Пенка» — стаканы навынос", video: "works/penka-identity/motion/cups.mp4", poster: "works/penka-identity/motion/cups-poster.jpg", mVideo: "home/cups-m.mp4", mPoster: "home/cups-m.jpg" },
     { slug: "shum-motion", title: "«Шум» — афиша на остановке", video: "works/shum-motion/busstop.mp4", poster: "works/shum-motion/busstop-poster.jpg", mVideo: "home/busstop-m.mp4", mPoster: "home/busstop-m.jpg" },
-    { slug: "gryadka-deck", title: "«Грядка» — презентация для инвесторов", img: "works/gryadka-deck/hero.jpg" },
+    { slug: "penka-identity", title: "«Пенка» — пакет, карта гостя и наклейки", video: "works/penka-identity/motion/flatlay.mp4", poster: "works/penka-identity/motion/flatlay-poster.jpg", mVideo: "home/flatlay-m.mp4", mPoster: "home/flatlay-m.jpg" },
+    { slug: "shum-motion", title: "«Шум» — расклейка в городе", img: "works/shum-motion/wall.jpg" },
     { slug: "penka-identity", title: "«Пенка» — своя керамика", video: "works/penka-identity/motion/barista.mp4", poster: "works/penka-identity/motion/barista-poster.jpg", mVideo: "home/barista-m.mp4", mPoster: "home/barista-m.jpg" },
+    { slug: "shum-motion", title: "«Шум» — билет, бейдж и футболка", img: "works/shum-motion/merch.jpg" },
   ];
 
   // Фильм: самые сильные работы.
@@ -129,6 +130,8 @@
     sh.d.classList.add("on");
     if (sh.m.tagName === "VIDEO" && heroOn) { try { sh.m.currentTime = 0; } catch (e) {} sh.m.play().catch(() => {}); }
     const nx = shots[(cur + 1) % shots.length].m;
+    // фото шоурила лениво не ждём: текущее и следующее грузим сразу, иначе кадр может прийти пустым
+    [sh.m, nx].forEach((m) => { if (m.tagName === "IMG" && m.loading === "lazy") m.loading = "eager"; });
     if (heroOn && nx.tagName === "VIDEO" && nx.preload !== "auto") nx.preload = "auto";
     if (!reduce) {
       if (sh.anim) sh.anim.cancel();
