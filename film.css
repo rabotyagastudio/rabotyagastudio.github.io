@@ -37,7 +37,7 @@ img, video { display: block; }
 .hd.light .hd-tg { background: var(--ink); color: #fff; }
 
 /* ---------- стопка слоёв ---------- */
-.stack { position: relative; }
+.stack { position: relative; margin-top: -28px; }
 .layer {
   position: sticky; top: 0; height: 100vh; height: 100svh; min-height: 520px;
   overflow: hidden; background: #000;
@@ -153,10 +153,10 @@ img, video { display: block; }
 .nt-card b { display: block; font: 500 11px var(--display); opacity: .55; margin-bottom: 6px; }
 
 /* ---------- индекс всех работ ---------- */
+/* каталог — первый экран; шоурил и пролёт камеры начинаются под ним */
 .index {
-  margin-top: -100vh; margin-top: -100svh;
-  position: relative; z-index: 2; background: var(--bg); color: var(--ink);
-  border-radius: 28px 28px 0 0; box-shadow: 0 -40px 80px rgba(0,0,0,.45);
+  position: relative; z-index: 3; background: var(--bg); color: var(--ink);
+  border-radius: 0 0 28px 28px; box-shadow: 0 40px 80px rgba(0,0,0,.45);
   padding: clamp(96px, 14vh, 150px) var(--gut) clamp(80px, 12vh, 140px);
 }
 .ix-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: clamp(32px, 5vh, 56px); }
@@ -219,7 +219,11 @@ img, video { display: block; }
 .peek .top { opacity: 1; }
 
 /* ---------- контакт ---------- */
-.contact { position: relative; z-index: 2; background: var(--night); padding: clamp(96px, 16vh, 180px) var(--gut) clamp(64px, 10vh, 120px); }
+/* контакты наезжают на последний кадр пролёта — раньше это делал каталог */
+.contact {
+  margin-top: -100vh; margin-top: -100svh;
+  border-radius: 28px 28px 0 0; box-shadow: 0 -40px 80px rgba(0,0,0,.45);
+  position: relative; z-index: 2; background: var(--night); padding: clamp(96px, 16vh, 180px) var(--gut) clamp(64px, 10vh, 120px); }
 .ct-kicker { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .5; margin-bottom: 18px; }
 .ct-services { font-size: clamp(20px, 2.2vw, 34px); line-height: 1.35; max-width: 34ch; opacity: .85; margin-bottom: clamp(64px, 12vh, 140px); }
 .contact h2 { font-family: var(--display); font-weight: 500; font-size: clamp(48px, 9vw, 168px); line-height: .9; letter-spacing: -.05em; margin-bottom: 40px; }
@@ -236,6 +240,7 @@ img, video { display: block; }
   .hd { padding: 14px var(--gut); }
   .hd-nav { display: none; }
   .hd-tg { padding: 9px 15px; font-size: 13px; }
+  .hd-tg { flex: none; }
   .hero-bottom { grid-template-columns: 1fr; gap: 28px; bottom: 28px; }
   .status { margin-bottom: 16px; }
   .hero h1 { font-size: clamp(34px, 10.4vw, 52px); }
@@ -251,7 +256,9 @@ img, video { display: block; }
   .nt-card { max-width: 210px; font-size: 13px; padding: 10px 12px 11px; }
   .sc-cam.reel-covers > img { height: auto; width: 38vw; }
 
-  .index { border-radius: 22px 22px 0 0; }
+  .index { border-radius: 0 0 22px 22px; }
+  .stack { margin-top: -22px; }
+  .contact { border-radius: 22px 22px 0 0; }
   .ix-filters { flex-wrap: nowrap; overflow-x: auto; margin: 0 calc(var(--gut) * -1); padding: 0 var(--gut); scrollbar-width: none; }
   .ix-filters::-webkit-scrollbar { display: none; }
   .ix-filters button { flex: none; }
@@ -338,3 +345,4 @@ img, video { display: block; }
   .ix-list[data-v="credits"] .v-what { grid-area: w; font-size: 14px; }
   .ix-list[data-v="credits"] .v-who { grid-area: h; font-size: 13px; }
 }
+

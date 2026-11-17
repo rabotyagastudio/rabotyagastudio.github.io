@@ -160,7 +160,7 @@
   }));
 
   // ---------- фильм: пролёт камеры из работы в работу ----------
-  const stage = $(".stage"), pin = $(".stage-pin"), stageIn = $(".stage-in"), indexEl = $(".index"), hd = $(".hd");
+  const stage = $(".stage"), pin = $(".stage-pin"), stageIn = $(".stage-in"), indexEl = $(".index"), contactEl = $(".contact"), hd = $(".hd");
   const HOLD0 = 0.25, NOTE = 0.4, HOLD1 = 0.2, FLY = 1.25; // длины отрезков в экранах прокрутки
   const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
   const clamp01 = (v) => Math.min(1, Math.max(0, v));
@@ -361,13 +361,15 @@
     hero.style.visibility = u >= 0.02 ? "hidden" : "";
     pin.style.visibility = u >= T + 1 ? "hidden" : "";
 
-    const ir = indexEl.getBoundingClientRect();
-    hd.classList.toggle("light", (ir.top <= 36 && ir.bottom > 36) || (ir.top > 36 && u >= 0 && liveLight));
-    const hv = u < -0.2;
+    // светлая шапка: над каталогом (он сверху) или на светлом кадре пролёта, пока его не накрыли контакты
+    const ir = indexEl.getBoundingClientRect(), cr = contactEl.getBoundingClientRect();
+    hd.classList.toggle("light", (ir.top <= 36 && ir.bottom > 36) || (ir.bottom <= 36 && cr.top > 36 && u >= 0 && liveLight));
+    // шоурил играет, только пока его видно: сверху над ним теперь каталог
+    const hv = u < -0.2 && hero.getBoundingClientRect().top < VH;
     if (hv !== heroOn && !document.hidden && !caseOpen()) heroPause(hv);
   }
 
-  const heroVisible = () => -stage.getBoundingClientRect().top / VH < -0.2;
+  const heroVisible = () => -stage.getBoundingClientRect().top / VH < -0.2 && hero.getBoundingClientRect().top < VH;
   // плавность «камеры»: прогресс догоняет прокрутку по времени, а не по кадрам
   let us = null, raf2 = 0, lastT = 0;
   function tick(now) {
@@ -431,7 +433,7 @@
     li.innerHTML = `<a href="${caseUrl(w.slug)}">${inner}</a>`;
     return li;
   };
-  const GROUPS = ["motion", "slides", "social", "carousels", "web", "print", "identity"];
+  const GROUPS = ["web", "motion", "slides", "social", "carousels", "print", "identity"];
   const GROUP_NAME = { identity: "Айдентика", social: "Соцсети", carousels: "Карусели", slides: "Презентации", print: "Полиграфия", motion: "Моушен", web: "Сайты" };
   // подача списка: «По услугам»; запасные — ?ix=italic («Фраза») и ?ix=credits («Титры»)
   const VARIANTS = ["groups", "italic", "credits"];
